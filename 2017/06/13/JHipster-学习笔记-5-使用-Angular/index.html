@@ -1,0 +1,1134 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="来自官网 附Angular 上手中文教程  使用 Angular请注意本章节仅供 Angular 2+ 参考，AngularJS 1.x 请移步 使用 AngularJS 文档 工具Angular 2+ 使用的是 TypeScript 而不是 JavaScript，结果有一些特定的工具是我们有效的工作。 我们的 Angular 2+ 应用的开发工作流程如下，如果您愿意，可以使用 npm 代替 ya">
+<meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster 学习笔记(五) - 使用 Angular">
+<meta property="og:url" content="http://jefferlau.me/2017/06/13/JHipster-学习笔记-5-使用-Angular/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="来自官网 附Angular 上手中文教程  使用 Angular请注意本章节仅供 Angular 2+ 参考，AngularJS 1.x 请移步 使用 AngularJS 文档 工具Angular 2+ 使用的是 TypeScript 而不是 JavaScript，结果有一些特定的工具是我们有效的工作。 我们的 Angular 2+ 应用的开发工作流程如下，如果您愿意，可以使用 npm 代替 ya">
+<meta property="og:updated_time" content="2017-06-13T08:04:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster 学习笔记(五) - 使用 Angular">
+<meta name="twitter:description" content="来自官网 附Angular 上手中文教程  使用 Angular请注意本章节仅供 Angular 2+ 参考，AngularJS 1.x 请移步 使用 AngularJS 文档 工具Angular 2+ 使用的是 TypeScript 而不是 JavaScript，结果有一些特定的工具是我们有效的工作。 我们的 Angular 2+ 应用的开发工作流程如下，如果您愿意，可以使用 npm 代替 ya">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2017/06/13/JHipster-学习笔记-5-使用-Angular/"/>
+
+
+
+
+
+  <title>JHipster 学习笔记(五) - 使用 Angular | 谦和斋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">写代码的厨房</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/13/JHipster-学习笔记-5-使用-Angular/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JHipster 学习笔记(五) - 使用 Angular
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T10:00:20+08:00">
+                2017-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/13/JHipster-学习笔记-5-使用-Angular/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/13/JHipster-学习笔记-5-使用-Angular/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/13/JHipster-学习笔记-5-使用-Angular/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(五) - 使用 Angular">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://jhipster.github.io/using-angular/" target="_blank" rel="external">来自官网</a></p>
+<p>附<a href="https://angular.cn/docs/ts/latest/quickstart.html" target="_blank" rel="external">Angular 上手中文教程</a></p>
+<h1 id="使用-Angular"><a href="#使用-Angular" class="headerlink" title=" 使用 Angular"></a><h1 id="-using-angular"><i class="fa fa-html5"></i> 使用 Angular</h1></h1><p>请注意本章节仅供 Angular 2+ 参考，AngularJS 1.x 请移步 <a href="https://jhipster.github.io/using-angularjs/" target="_blank" rel="external">使用 AngularJS 文档</a></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>Angular 2+ 使用的是 TypeScript 而不是 JavaScript，结果有一些特定的工具是我们有效的工作。 我们的 Angular 2+ 应用的开发工作流程如下，如果您愿意，可以使用 <code>npm</code> 代替 <code>yarn。</code></p>
+<ol>
+<li>生成应用程序时，将创建文件，并在生成结束时，<code>yarn install</code>任务被触发。</li>
+<li><code>yarn install</code>完成后，将调用 <code>package.json</code> 中的 <code>postInstall</code> 脚本，此步骤将触发 <code>webpack:build</code> 任务。</li>
+<li>现在，您应该根据所选的构建工具（ Maven 或 Gradle ）将所有生成的文件和编译到<code>target</code>文件夹或<code>build</code>文件夹中的 <code>www</code> 文件夹中。</li>
+<li>现在运行<code>./mvnw</code>或<code>./gradlew</code>启动应用程序服务器，它应该运行在<a href="">localhost:8080</a>这也会为上述步骤编译的客户端代码提供服务。</li>
+<li>现在，在新终端运行<code>yarn start</code>，使用 BrowserSync 启动 Webpack dev-server。 这将负责编译您的 TypeScript 代码，并自动刷新您的浏览器。</li>
+</ol>
+<p>如果您开始更改客户端代码而没有<code>yarn start</code>，则不会反映任何内容，因为更改未被编译，因此您需要在更改后手动运行<code>yarn webpack:build:dev</code>或运行<code>yarn start</code>。</p>
+<p>您还可以强制 maven / gradle 运行 <code>webpack:build:dev</code>任务，同时通过传递 <code>webpack</code>profile 配置文件，如<code>./mvnw -Pdev,webpack</code>或<code>./gradlew -Pdev -Pwebpack</code>。 这在运行<code>clean</code>任务后特别有用。</p>
+<ul>
+<li>要在浏览器中处理代码，我们建议您使用 <a href="https://augury.angular.io/" target="_blank" rel="external">Angular Augury</a>，因为您可以轻松地查看路由并调试代码。</li>
+</ul>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>JHipster 客户端代码可以在<code>src/main/webapp</code>下找到，并且遵循[John Papa Angular 2风格指南]（<a href="https://github.com/johnpapa/angular-styleguide/blob/master/a2/README.md））。" target="_blank" rel="external">https://github.com/johnpapa/angular-styleguide/blob/master/a2/README.md））。</a> 如果您对我们的应用程序结构，文件名，TypeScript 约定有任何疑问，请先阅读本指南…</p>
+<p>该风格指南由 Angular 团队认可，并提供每个角色项目应遵循的最佳实践。</p>
+<p>对于 Angular 路线，我们遵循一个破折号命名约定，以便 URL 清晰，一致。 当您生成实体时，根据此惯例生成路由名称，路由 URL 和 REST API 端点 URL，实体名称也会在需要时自动复用。</p>
+<p>这里是主要的项目结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">webapp</div><div class="line">├── app                               - Your application</div><div class="line">│   ├── account                       - User account management UI</div><div class="line">│   ├── admin                         - Administration UI</div><div class="line">│   ├── blocks                        - Common building blocks like configuration and interceptors</div><div class="line">│   ├── entities                      - Generated entities (more information below)</div><div class="line">│   ├── home                          - Home page</div><div class="line">│   ├── layouts                       - Common page layouts like navigation bar and error pages</div><div class="line">│   ├── shared                        - Common services like authentication and internationalization</div><div class="line">│   ├── app.main.ts                   - Main application class</div><div class="line">│   ├── app.module.js                 - Application modules configuration</div><div class="line">│   └── app.route.js                  - Main application router</div><div class="line">├── content                           - Static content</div><div class="line">│   ├── css                           - CSS stylesheets</div><div class="line">│   └── images                        - Images</div><div class="line">├── i18n                              - Translation files</div><div class="line">├── scss                              - Sass style sheet files will be here if you choose the option</div><div class="line">├── swagger-ui                        - Swagger UI front-end</div><div class="line">├── 404.html                          - 404 page</div><div class="line">├── favicon.ico                       - Fav icon</div><div class="line">├── index.html                        - Index page</div><div class="line">└── robots.txt                        - Configuration for bots and Web crawlers</div></pre></td></tr></table></figure></p>
+<p>使用<a href="https://jhipster.github.io/creating-an-entity/" target="_blank" rel="external">实体子生成器</a>创建名为 <code>Foo</code> 的新实体在<code>src/main/webapp</code>下生成以下前端文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">webapp</div><div class="line">├── app</div><div class="line">│   └── entities</div><div class="line">│       └── foo                                    - CRUD front-end for the Foo entity</div><div class="line">│           ├── foo.component.html                 - HTML view for the list page</div><div class="line">│           ├── foo.component.ts                   - Controller for the list page</div><div class="line">│           ├── foo.model.ts                       - Model representing the Foo entity</div><div class="line">│           ├── foo.module.ts                      - Angular module for the Foo entity</div><div class="line">│           ├── foo.route.ts                       - Angular Router configuration</div><div class="line">│           ├── foo.service.ts                     - Service which access the Foo REST resource</div><div class="line">│           ├── foo-delete-dialog.component.html   - HTML view for deleting a Foo</div><div class="line">│           ├── foo-delete-dialog.component.ts     - Controller for deleting a Foo</div><div class="line">│           ├── foo-detail.component.html          - HTML view for displaying a Foo</div><div class="line">│           ├── foo-detail.component.ts            - Controller or displaying a Foo</div><div class="line">│           ├── foo-dialog.component.html          - HTML view for editing a Foo</div><div class="line">│           ├── foo-dialog.component.ts            - Controller for editing a Foo</div><div class="line">│           ├── foo-popup.service.ts               - Service for handling the create/update dialog pop-up</div><div class="line">│           ├── index.ts                           - Barrel for exporting everything</div><div class="line">├── i18n                                           - Translation files</div><div class="line">│   ├── en                                         - English translations</div><div class="line">│   │   ├── foo.json                               - English translation of Foo name, fields, ...</div><div class="line">│   ├── fr                                         - French translations</div><div class="line">│   │   ├── foo.json                               - French translation of Foo name, fields, ...</div></pre></td></tr></table></figure></p>
+<p>请注意，默认语言翻译将基于您在应用程序生成期间所选择的内容。这里的’en’和’fr’仅用于演示。</p>
+<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>JHipster 使用<a href="https://angular.io/docs/ts/latest/guide/router.html" target="_blank" rel="external">Angular 路由器</a>来组织客户端应用程序的不同部分。</p>
+<p>对于每个状态，所需权限列表在状态的数据中，当权限列表为空时，表示可以匿名访问该状态。</p>
+<p>授权也在服务器端的 <code>AuthoritiesConstants.java</code> 类定义，逻辑上客户端和服务器端的权限应该相同。</p>
+<p>在下面的示例中，‘sessions’状态设计为经过身份验证的仅由具有<code>ROLE_USER</code>权限的用户访问：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> sessionsRoute: Route = &#123;</div><div class="line">    path: <span class="string">'sessions'</span>,</div><div class="line">    component: SessionsComponent,</div><div class="line">    data: &#123;</div><div class="line">        authorities: [<span class="string">'ROLE_USER'</span>],</div><div class="line">        pageTitle: <span class="string">'global.menu.account.sessions'</span></div><div class="line">    &#125;,</div><div class="line">    canActivate: [UserRouteAccessService]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>一旦在路由器中定义了这些权限，就可以根据参数类型在其2种变体中使用<code>jhiHasAnyAuthority</code>指令：</p>
+<ul>
+<li>对于单个字符串，该指令显示用户具有权限的 HTML 组件</li>
+<li>对于字符串数组，用户具有权限列表之一该指令就显示 HTML 组件</li>
+</ul>
+<p>例如，以下文本只会显示给具有<code>ROLE_ADMIN</code>权限的用户：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> *<span class="attr">jhiHasAnyAuthority</span>=<span class="string">"'ROLE_ADMIN'"</span>&gt;</span>Hello, admin user<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>例如，以下文本只会显示给具有<code>ROLE_ADMIN</code>或<code>ROLE_USER</code>权限之一的用户：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> *<span class="attr">jhiHasAnyAuthority</span>=<span class="string">"['ROLE_ADMIN', 'ROLE_USER']"</span>&gt;</span>Hello, dear user<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>请注意，这些指令仅在客户端显示或隐藏HTML组件，您还需要在服务器端保护您的代码！</p>
+<h2 id="ng-jhipster-库"><a href="#ng-jhipster-库" class="headerlink" title="ng-jhipster 库"></a>ng-jhipster 库</h2><p>ng-jhipster 库是开源免费的，可以在<a href="">https://github.com/jhipster/ng-jhipster</a>上找到。</p>
+<p>ng-jhipster 库包含 Angular 2+ 应用程序使用的实用程序函数和常用组件。 他们包括：</p>
+<ul>
+<li>验证指令</li>
+<li>国际化组件</li>
+<li>通常使用的管道，如大小写，排序和词语截断</li>
+<li>Base64，日期和分页处理服务</li>
+<li>通知系统（见下文）</li>
+</ul>
+<h2 id="通知系统"><a href="#通知系统" class="headerlink" title="通知系统"></a>通知系统</h2><p>JHipster 使用自定义通知系统将事件从服务器端发送到客户端，并具有能够在生成的应用程序中使用的具有 i18n 功能的<code>JhiAlertComponent</code>和<code>JhiAlertErrorComponent</code>组件。</p>
+<p>默认情况下，当 HTTP 响应发生错误时，JHipster 会显示错误通知。</p>
+<p>要显示自定义通知或警报，请在将<code>AlertService</code>注入的控制器，指令或服务后使用以下方法。</p>
+<p>速记方法 <code>success</code>, <code>info</code>, <code>warning</code> 和 <code>error</code> 的默认超时时间为5秒，可以修改配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.alerts.push(</div><div class="line">    <span class="keyword">this</span>.alertService.addAlert(</div><div class="line">        &#123;</div><div class="line">            <span class="attr">type</span>: <span class="string">'danger'</span>,</div><div class="line">            <span class="attr">msg</span>: <span class="string">'you should not have pressed this button!'</span>,</div><div class="line">            <span class="attr">timeout</span>: <span class="number">5000</span>,</div><div class="line">            <span class="attr">toast</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">scoped</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="keyword">this</span>.alerts</div><div class="line">    )</div><div class="line">);</div></pre></td></tr></table></figure>
+<h1 id="使用-Angular-CLI"><a href="#使用-Angular-CLI" class="headerlink" title="使用 Angular CLI"></a>使用 Angular CLI</h1><blockquote>
+<p>Info: Angular CLI 和 JHipster 可以并行用于开发，并且都有自己的配置文件。 默认情况下，JHipster 在部署应用程序或使用 CI-CD sub-generator 时正在使用自己的配置。</p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><a href="https://cli.angular.io/" target="_blank" rel="external">Angular CLI</a> 是开发，搭建和维护 Angular 应用的工具。 JHipster 生成 Angular CLI 配置文件，因此 Angular CLI 工作流可与 JHipster 一起使用。</p>
+<p>此集成通过在应用程序根文件夹中生成<code>.angular-cli.json</code>文件并将其依赖项添加到<code>package.json</code>文件中来完成。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng <span class="built_in">help</span></div></pre></td></tr></table></figure>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>您可以使用 Angular CLI 构建前端。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng build</div></pre></td></tr></table></figure>
+<p>或用于生产:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng build --prod</div></pre></td></tr></table></figure>
+<h2 id="生成-Components-Directives-Pipes-和-Services"><a href="#生成-Components-Directives-Pipes-和-Services" class="headerlink" title="生成 Components, Directives, Pipes 和 Services"></a>生成 Components, Directives, Pipes 和 Services</h2><p>您可以使用 <code>ng generate</code>（或只是<code>ng g</code>）命令生成 Angular 组件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ng generate component my-new-component</div><div class="line">ng g component my-new-component <span class="comment"># 使用别名</span></div><div class="line"></div><div class="line"><span class="comment"># 组件支持相对路径生成</span></div><div class="line"><span class="comment"># 进入 src/app/feature/ 并运行</span></div><div class="line">ng g component new-cmp</div><div class="line"><span class="comment"># 组件将生成在 src/app/feature/new-cmp</span></div><div class="line"><span class="comment"># 但是如果你运行</span></div><div class="line">ng g component ../newer-cmp</div><div class="line"><span class="comment"># 组件将生成在 src/app/newer-cmp</span></div></pre></td></tr></table></figure>
+<p>您可以在下表中找到所有可能的蓝图：</p>
+<style>
+table th:first-of-type {
+    width: 100px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th>脚手架</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-component" target="_blank" rel="external">Component</a></td>
+<td><code>ng g component my-new-component</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-directive" target="_blank" rel="external">Directive</a></td>
+<td><code>ng g directive my-new-directive</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-pipe" target="_blank" rel="external">Pipe</a></td>
+<td><code>ng g pipe my-new-pipe</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-service" target="_blank" rel="external">Service</a></td>
+<td><code>ng g service my-new-service</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-class" target="_blank" rel="external">Class</a></td>
+<td><code>ng g class my-new-class</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-guard" target="_blank" rel="external">Guard</a></td>
+<td><code>ng g guard my-new-guard</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-interface" target="_blank" rel="external">Interface</a></td>
+<td><code>ng g interface my-new-interface</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-enum" target="_blank" rel="external">Enum</a></td>
+<td><code>ng g enum my-new-enum</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/angular/angular-cli/wiki/generate-module" target="_blank" rel="external">Module</a></td>
+<td><code>ng g module my-module</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>为了 JHipster 应用程序的一致性目的，测试执行只能通过<code>yarn</code>命令获得：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn <span class="built_in">test</span></div></pre></td></tr></table></figure>
+<h2 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h2><p>JHipster 正在使用 <code>ng2-translate</code> 依赖来进行翻译。 Angular CLI i18n 基于默认的 Angular i18n 支持，这与 JHipster 不兼容。</p>
+<h2 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h2><p>如果您更倾向于使用 Angular CLI 来开发应用程序，则可以使用其专用命令直接运行服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng serve</div></pre></td></tr></table></figure>
+<p>通过使用它，它将编译您的 Angular 应用程序，并允许您访问<a href="">http://localhost:4200</a>。 但是，默认情况下，您的后端将无法使用。</p>
+<p>要使用本地后端服务器，请使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng serve --proxy-conf proxy.conf.json</div></pre></td></tr></table></figure>
+<p>然后，您将可以访问您的API。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>有关 Angular CLI 的更多信息，请访问官方网站 <a href="">https://cli.angular.io/</a></p>
+<h1 id="定制-Bootstrap-4"><a href="#定制-Bootstrap-4" class="headerlink" title="定制 Bootstrap 4"></a><h1 id="-customizing-bootstrap-4"><i class="fa fa-css3"></i>定制 Bootstrap 4</h1></h1><p>请注意本章节仅供 Angular 2+ 与 Bootstrap 4 参考，AngularJS 1.x 与 Bootstrap 3 请移步 <a href="https://jhipster.github.io/customizing-bootstrap-3/" target="_blank" rel="external">Bootstrap 3 文档</a></p>
+<h2 id="基本定制"><a href="#基本定制" class="headerlink" title="基本定制"></a>基本定制</h2><p><em>专业提示：不要忘记运行<code>yarn start</code>获取您更改的即时反馈！</em></p>
+<p>其实自定义 JHipster 应用程序 Bootstrap 4 的最简单方法是通过覆盖文件 <code>src/main/webapp/content/css/global.css</code> 中的 CSS 样式，如果选择了 Sass 选项，那就覆盖 <code>src/main/webapp/scss/global.scss</code> 文件中的 CSS 样式。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JHipster/" rel="tag"># JHipster</a>
+          
+            <a href="/tags/Modern-Web-apps/" rel="tag"># Modern Web apps</a>
+          
+            <a href="/tags/A-Beautiful-front-end/" rel="tag"># A Beautiful front-end</a>
+          
+            <a href="/tags/A-robust-and-high-quality-back-end/" rel="tag"># A robust and high-quality back-end</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/13/JHipster-学习笔记-6-创建-entity/" rel="next" title="JHipster 学习笔记(六) - 创建 entity">
+                <i class="fa fa-chevron-left"></i> JHipster 学习笔记(六) - 创建 entity
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" rel="prev" title="JHipster 学习笔记(四) - Common 应用程序属性文件">
+                JHipster 学习笔记(四) - Common 应用程序属性文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.youmeek.com/idea" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马到成功的博客" target="_blank">马到成功的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Angular"><span class="nav-number">1.</span> <span class="nav-text"> 使用 Angular</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-using-angular"><span class="nav-number">2.</span> <span class="nav-text"> 使用 Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">2.1.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权"><span class="nav-number">2.3.</span> <span class="nav-text">授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ng-jhipster-库"><span class="nav-number">2.4.</span> <span class="nav-text">ng-jhipster 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知系统"><span class="nav-number">2.5.</span> <span class="nav-text">通知系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Angular-CLI"><span class="nav-number">3.</span> <span class="nav-text">使用 Angular CLI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">3.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">3.3.</span> <span class="nav-text">构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成-Components-Directives-Pipes-和-Services"><span class="nav-number">3.4.</span> <span class="nav-text">生成 Components, Directives, Pipes 和 Services</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">3.5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#i18n"><span class="nav-number">3.6.</span> <span class="nav-text">i18n</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行服务"><span class="nav-number">3.7.</span> <span class="nav-text">运行服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定制-Bootstrap-4"><span class="nav-number">4.</span> <span class="nav-text">定制 Bootstrap 4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-customizing-bootstrap-4"><span class="nav-number">5.</span> <span class="nav-text">定制 Bootstrap 4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本定制"><span class="nav-number">5.1.</span> <span class="nav-text">基本定制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2017/06/13/JHipster-学习笔记-5-使用-Angular/';
+          this.page.identifier = '2017/06/13/JHipster-学习笔记-5-使用-Angular/';
+          this.page.title = 'JHipster 学习笔记(五) - 使用 Angular';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

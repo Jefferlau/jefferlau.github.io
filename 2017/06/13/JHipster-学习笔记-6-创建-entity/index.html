@@ -1,0 +1,1156 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="来自官网 创建 entity推荐在开始前先看看官方视频 video tutorial! 重要 如果您想要“live reload”您的 JavaScript / TypeScript 代码，则需要运行 gulp （适用于 JavaScript/AngularJS 1）或 yarn start（用于 TypeScript/Angular 2+）。 您可以从 在开发中使用 JHipster 了解更多信">
+<meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster 学习笔记(六) - 创建 entity">
+<meta property="og:url" content="http://jefferlau.me/2017/06/13/JHipster-学习笔记-6-创建-entity/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="来自官网 创建 entity推荐在开始前先看看官方视频 video tutorial! 重要 如果您想要“live reload”您的 JavaScript / TypeScript 代码，则需要运行 gulp （适用于 JavaScript/AngularJS 1）或 yarn start（用于 TypeScript/Angular 2+）。 您可以从 在开发中使用 JHipster 了解更多信">
+<meta property="og:image" content="https://jhipster.github.io/images/screenshot_5.png">
+<meta property="og:updated_time" content="2017-06-13T10:09:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster 学习笔记(六) - 创建 entity">
+<meta name="twitter:description" content="来自官网 创建 entity推荐在开始前先看看官方视频 video tutorial! 重要 如果您想要“live reload”您的 JavaScript / TypeScript 代码，则需要运行 gulp （适用于 JavaScript/AngularJS 1）或 yarn start（用于 TypeScript/Angular 2+）。 您可以从 在开发中使用 JHipster 了解更多信">
+<meta name="twitter:image" content="https://jhipster.github.io/images/screenshot_5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2017/06/13/JHipster-学习笔记-6-创建-entity/"/>
+
+
+
+
+
+  <title>JHipster 学习笔记(六) - 创建 entity | 谦和斋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">写代码的厨房</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/13/JHipster-学习笔记-6-创建-entity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JHipster 学习笔记(六) - 创建 entity
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T15:59:16+08:00">
+                2017-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/13/JHipster-学习笔记-6-创建-entity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/13/JHipster-学习笔记-6-创建-entity/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/13/JHipster-学习笔记-6-创建-entity/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(六) - 创建 entity">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://jhipster.github.io/creating-an-entity/" target="_blank" rel="external">来自官网</a></p>
+<h1 id="创建-entity"><a href="#创建-entity" class="headerlink" title="创建 entity"></a>创建 entity</h1><p><em>推荐在开始前先看看官方视频 <a href="https://jhipster.github.io/video-tutorial/" target="_blank" rel="external">video tutorial</a>!</em></p>
+<p><strong>重要</strong> 如果您想要“live reload”您的 JavaScript / TypeScript 代码，则需要运行 <code>gulp</code> （适用于 JavaScript/AngularJS 1）或 <code>yarn start</code>（用于 TypeScript/Angular 2+）。 您可以从 <a href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" title="在开发中使用 JHipster">在开发中使用 JHipster</a> 了解更多信息。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>创建应用程序后，您将需要创建实体(entity)。 例如，您可能需要创建“Author”和“Book”实体。 对于每个实体，您将需要：</p>
+<ul>
+<li>数据库表</li>
+<li>Liquibase 变更集</li>
+<li>JPA Entity</li>
+<li>Spring Data JPA Repository</li>
+<li>Spring MVC REST Controller, 具有基本的 CRUD 操作</li>
+<li>Angular 路由器，组件和服务</li>
+<li>HTML 视图</li>
+<li>集成测试，以验证一切都正常工作</li>
+<li>性能测试，看看是否都流畅运行</li>
+</ul>
+<p>如果您有几个实体，您可能希望在它们之间建立关系。 为此，您将需要：</p>
+<ul>
+<li>数据库外键</li>
+<li>用于管理此关系的特定 JavaScript 和 HTML 代码</li>
+</ul>
+<p>“entity” sub-generator 将创建所有必需的文件，并为每个实体提供一个 CRUD 前端（参见<a href="/2017/06/13/JHipster-学习笔记-5-使用-Angular/" title="项目结构">项目结构</a>）。 可以通过运行 <code>jhipster entity &lt;entityName&gt; - [options]</code>来调用子生成器。 可以通过键入 <code>jhipster entity --help</code> 找到这些选项的参考</p>
+<p>以下是支持的选项。</p>
+<ul>
+<li><code>--table-name &lt;table_name&gt;</code> - 默认情况下，JHipster 将根据您的实体名称生成一个表名，如果您希望具有不同的表名，可以传递此选项。</li>
+<li><code>--angular-suffix &lt;suffix&gt;</code> - 如果您希望所有 Angular 路由都有自定义后缀，您可以使用此选项传递。</li>
+<li><code>--regenerate</code> - 这将重新生成一个现有的实体，而不会提出任何问题。</li>
+<li><code>--skip-server</code> - 这将跳过服务器端代码，只会生成客户端代码。</li>
+<li><code>--skip-client</code> - 这将跳过客户端 diam，只会生成服务端代码。</li>
+</ul>
+<h2 id="JHipster-UML-和-JDL-Studio"><a href="#JHipster-UML-和-JDL-Studio" class="headerlink" title="JHipster UML 和 JDL Studio"></a>JHipster UML 和 JDL Studio</h2><p>本页介绍如何使用标准命令行界面创建 JHipster 的实体。 如果要创建多个实体，则可能更喜欢使用图形工具。</p>
+<p>在这种情况下，有两个选项可用：</p>
+<ul>
+<li><a href="https://jhipster.github.io/jhipster-uml/" target="_blank" rel="external">JHipster UML</a>，它允许您使用 UML 编辑器。</li>
+<li><a href="https://jhipster.github.io/jdl-studio/" target="_blank" rel="external">JDL Studio</a>，我们的在线工具，使用我们的领域专用语言 <a href="https://jhipster.github.io/jdl/" target="_blank" rel="external">JDL</a> 创建实体和关系。</li>
+</ul>
+<p>如果使用 JDL Studio:</p>
+<ul>
+<li>您可以使用 <code>import-jdl</code> 子生成器通过运行 <code>jhipster import-jdl your-jdl-file.jh</code> 从 JDL 文件生成实体。</li>
+<li>如果要使用 JHipster UML 而不是 <code>import-jdl</code> 子生成器，则需要通过运行 <code>npm install -g jhipster-uml</code> 来安装它，然后运行 <code>jhipster-uml yourFileName.jh</code>。</li>
+</ul>
+<h2 id="Entity-字段"><a href="#Entity-字段" class="headerlink" title="Entity 字段"></a>Entity 字段</h2><p>对于每个实体，您可以根据需要添加任意数量的字段。 您将需要输入字段名称及其类型，JHipster 将为您生成所有必需的代码和配置，从 Angular HTML 视图到 Liquibase 变更日志。</p>
+<p>这些字段在您使用的技术中不能包含保留关键字。 例如，如果你使用 MySQL：</p>
+<ul>
+<li>您不能使用 Java 保留关键字（因为您的代码将无法编译）</li>
+<li>您不能使用 MySQL 保留关键字（因为您的数据库更新将失败）</li>
+</ul>
+<h2 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h2><p>JHipster 支持许多字段类型。 此支持取决于您的数据库后端，因此我们使用 Java 类型来描述它们：Java <code>String</code> 在 Oracle 或 Cassandra 中存储不同，它是 JHipster 为您生成正确的数据库访问代码的优势之一。</p>
+<ul>
+<li><code>String</code>: Java 字符串。 它的默认大小取决于底层后端（如果使用 JPA，默认值为 255），但是可以使用验证规则（例如设置<code>max</code>大小为 1024）进行更改。</li>
+<li><code>Integer</code>: Java 整数.</li>
+<li><code>Long</code>: Java 长整型.</li>
+<li><code>Float</code>: Java 单精度浮点数.</li>
+<li><code>Double</code>: Java 双精度浮点数.</li>
+<li>BigDecimal: java.math.BigDecimal 对象，当您想要精确的数学计算（通常用于财务操作）时使用。</li>
+<li><code>LocalDate</code>: java.time.LocalDate 对象，用于在 Java 中正确管理日期。</li>
+<li><code>Instant</code>: java.time.Instant 对象，用于表示时间戳，即时间线上的瞬时点。</li>
+<li><code>ZonedDateTime</code>: java.time.ZonedDateTime 对象，用于表示给定时区中的本地日期时间（通常为日历约会）。请注意，时区不是 REST 支持的，也不是持久层支持的，所以您应该最有可能使用 Instant。</li>
+<li><code>Boolean</code>: Java 布尔值。</li>
+<li><code>Enumeration</code>: Java 枚举对象。 当选择此类型时，子生成器将询问您在枚举中需要什么值，并且它将创建一个特定的枚举类来存储它们。</li>
+<li><code>Blob</code>: Blob 对象，用于存储一些二进制数据。 当选择此类型时，子生成器将询问您是否要存储通用二进制数据，图像对象或 CLOB（长文本）。 图像将专门在角度处理，因此它们可以显示给最终用户。</li>
+</ul>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>可以为每个字段设置验证。 根据字段类型，将提供不同的验证选项。</p>
+<p>验证将自动生成：</p>
+<ul>
+<li>HTML 视图，使用 <a href="https://docs.angularjs.org/guide/forms" target="_blank" rel="external">AngularJS 验证机制</a></li>
+<li>Java 领域对象，使用 <a href="http://beanvalidation.org/" target="_blank" rel="external">Bean 验证</a></li>
+</ul>
+<p>然后，Bean 验证将用于在域对象使用时自动验证：</p>
+<ul>
+<li>Spring MVC REST controllers (使用 @Valid 注解)</li>
+<li>Hibernate/JPA（实体在保存之前自动验证）</li>
+</ul>
+<p>验证信息还将用于生成更精确的数据库列元数据：</p>
+<ul>
+<li>必填字段将被标记为不可为空（non-nullable）</li>
+<li>设置最大长度的字段将具有相同的列长度</li>
+</ul>
+<p>验证有一些限制：</p>
+<ul>
+<li>我们不支持 AngularJS 和 Bean 验证的所有验证选项，因为我们只支持这两种 API 通用的验证选项</li>
+<li>正则表达式模式不能同时在 JavaScript 和 Java 中起作用，因此，如果您配置一个正则表达式模式，则可能需要调整生成的正则表达式模式</li>
+<li>JHipster 生成可用于通用实体的单元测试，而不知道您的验证规则：生成的测试可能未通过验证规则。 在这种情况下，您将需要修改单元测试中使用的示例值，以便它们通过验证规则。</li>
+</ul>
+<h2 id="Entity-关系"><a href="#Entity-关系" class="headerlink" title="Entity 关系"></a>Entity 关系</h2><p>实体关系仅适用于 SQL 数据库。 这是一个相当复杂的主题，它有自己的文档页面：<a href="https://jhipster.github.io/managing-relationships/" target="_blank" rel="external">管理关系</a>。</p>
+<h2 id="数据传输对象-DTOs"><a href="#数据传输对象-DTOs" class="headerlink" title="数据传输对象(DTOs)"></a>数据传输对象(DTOs)</h2><p>默认情况下，JHipster 实体不使用 DTO，但它们作为选项可用。 以下是文档：<a href="https://jhipster.github.io/using-dtos/" target="_blank" rel="external">使用 DTO</a>。</p>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>请注意，如果您使用 <a href="https://jhipster.github.io/using-cassandra/" target="_blank" rel="external">Cassandra</a> 创建了应用程序，则无法进行分页。 当然这将在以后的版本中添加。</p>
+<p>分页使用<a href="http://tools.ietf.org/html/rfc5988" target="_blank" rel="external">Link header</a>，如 <a href="https://developer.github.com/v3/#pagination" target="_blank" rel="external">GitHub API</a> 中。 JHipster 在服务器（Spring MVC REST）和客户端（AngularJS）两方面提供了本规范的自定义实现。</p>
+<p>当生成实体时，JHipster 提供 4 个分页选项：</p>
+<ul>
+<li>没有分页（在这种情况下，后端不会被分页）</li>
+<li>简单的分页，基于 Bootstrap 分页</li>
+<li>完整的分页系统，基于 Bootstrap 分页组件</li>
+<li>无限滚动系统，基于无限滚动指令</li>
+</ul>
+<h2 id="更新已存在的-Entity"><a href="#更新已存在的-Entity" class="headerlink" title="更新已存在的 Entity"></a>更新已存在的 Entity</h2><p>实体配置保存在<code>.jhipster</code>目录中的特定<code>.json</code>文件中。 因此，如果再次运行子生成器，则使用现有实体名称，可以更新或重新生成实体。</p>
+<p>当您为现有实体运行 entity sub-generator 时，将会询问您是否要更新实体？ 这将替换此实体的现有文件，所有您的自定义代码将被覆盖具有以下选项：</p>
+<ul>
+<li><code>Yes, re generate the entity</code> - 这只会重新生成您的实体。 提示：运行子生成器时可以通过传递一个 <code>--regenerate</code> 标志来强制执行此操作</li>
+<li><code>Yes, add more fields and relationships</code> - 这将给您提供更多的字段和关系的提问</li>
+<li><code>Yes, remove fields and relationships</code> - 这将为您提供问题以从实体中删除现有的字段和关系</li>
+<li><code>No, exit</code> - 这将退出子生成器而不改变任何东西</li>
+</ul>
+<p>您可能需要更新您的实体，原因如下：</p>
+<ul>
+<li>您想要添加/删除现有实体的字段和关系</li>
+<li>您要将实体代码重置为原始状态</li>
+<li>您已更新 JHipster，并希望通过新模板生成实体</li>
+<li>您已经修改了<code>.json</code>配置文件（格式与生成器提出的问题非常接近，所以不是很复杂），因此您可以拥有一个新版本的实体</li>
+<li>你已经拷贝/粘贴了<code>.json</code>文件，想要一个非常接近复制实体的新实体</li>
+</ul>
+<p>提示：要一次重新生成所有实体，您可以使用以下命令（删除<code>--force</code>在文件更改时询问问题）。</p>
+<ul>
+<li>Linux &amp; Mac: <code>for f in `ls .jhipster`; do jhipster entity ${f%.*} --force ; done</code></li>
+<li>Windows: <code>for %f in (.jhipster/*) do jhipster entity %~nf --force</code></li>
+</ul>
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>这是一个简短的教程，用于创建两个具有一对多关系的实体（作者 Author 和书籍 Book）。</p>
+<p><strong>重要</strong> 如果您想要“live reload”您的 JavaScript / TypeScript 代码，则需要运行 <code>gulp</code> （适用于 JavaScript/AngularJS 1）或 <code>yarn start</code>（用于 TypeScript/Angular 2+）。 您可以从 <a href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" title="在开发中使用 JHipster">在开发中使用 JHipster</a> 了解更多信息。</p>
+<h3 id="生成-Author-entity"><a href="#生成-Author-entity" class="headerlink" title="生成 Author entity"></a>生成 Author entity</h3><p>因为我们希望在作者和书籍之间有一对多的关系（一个作者可以写很多书），我们需要先创建作者。 在数据库级别，JHipster 将能够在 Book 表上添加一个外键，链接到作者表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jhipster entity author</div></pre></td></tr></table></figure>
+<p>回答有关这个实体字段的下一个问题，作者有：</p>
+<ul>
+<li>字段“name” 类型为 “String”</li>
+<li>字段“birthDate” 类型为 “LocalDate”</li>
+</ul>
+<p>然后回答有关关系的问题，作者有：</p>
+<ul>
+<li>与“书”实体的一对多关系（尚不存在）</li>
+</ul>
+<h3 id="生成-Book-entity"><a href="#生成-Book-entity" class="headerlink" title="生成 Book entity"></a>生成 Book entity</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jhipster entity book</div></pre></td></tr></table></figure>
+<p>回答有关这个实体字段的下一个问题，这本书有：</p>
+<ul>
+<li>字段“title”, 类型为 “String”</li>
+<li>字段“description”, 类型为 “String”</li>
+<li>字段“publicationDate”, 类型为 “LocalDate”</li>
+<li>字段“price”, 类型为 “BigDecimal”</li>
+</ul>
+<p>然后回答有关关系的问题，书有：</p>
+<ul>
+<li>与“Author”实体有多对一的关系</li>
+<li>而这种关系使用“name”字段（来自 Author 实体）来显示</li>
+</ul>
+<h3 id="检查生成的代码"><a href="#检查生成的代码" class="headerlink" title="检查生成的代码"></a>检查生成的代码</h3><p>运行生成测试套件，使用 <code>mvn test</code>，它将测试 Author 实体和 Book 实体。</p>
+<p>启动应用程序（例如使用<code>mvn</code>），登录并在“entities”菜单中选择 “Author” 和 “Book” 实体。</p>
+<p>检查数据库表，查看您的数据是否正确插入。</p>
+<h3 id="改善生成的代码"><a href="#改善生成的代码" class="headerlink" title="改善生成的代码"></a>改善生成的代码</h3><p>生成的文件包含所有基本的 CRUD 操作，如果需要简单，则不需要修改它们。</p>
+<p>如果要修改生成的代码或数据库，则应遵循<a href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" title="开发指南">开发指南</a></p>
+<p>如果您想要更复杂的业务行为，则可能需要使用 <a href="/2017/06/13/JHipster-学习笔记-7-创建-service/" title="service sub-generator">service sub-generator</a> 添加一个 Spring <code>@Service</code> 类。</p>
+<h3 id="完成了！"><a href="#完成了！" class="headerlink" title="完成了！"></a>完成了！</h3><p>生成的 CRUD 页面应如下所示：</p>
+<p><img src="https://jhipster.github.io/images/screenshot_5.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JHipster/" rel="tag"># JHipster</a>
+          
+            <a href="/tags/Modern-Web-apps/" rel="tag"># Modern Web apps</a>
+          
+            <a href="/tags/A-Beautiful-front-end/" rel="tag"># A Beautiful front-end</a>
+          
+            <a href="/tags/A-robust-and-high-quality-back-end/" rel="tag"># A robust and high-quality back-end</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/13/JHipster-学习笔记-7-创建-service/" rel="next" title="JHipster 学习笔记(七) - 创建 service">
+                <i class="fa fa-chevron-left"></i> JHipster 学习笔记(七) - 创建 service
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/JHipster-学习笔记-5-使用-Angular/" rel="prev" title="JHipster 学习笔记(五) - 使用 Angular">
+                JHipster 学习笔记(五) - 使用 Angular <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.youmeek.com/idea" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马到成功的博客" target="_blank">马到成功的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-entity"><span class="nav-number">1.</span> <span class="nav-text">创建 entity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JHipster-UML-和-JDL-Studio"><span class="nav-number">1.2.</span> <span class="nav-text">JHipster UML 和 JDL Studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entity-字段"><span class="nav-number">1.3.</span> <span class="nav-text">Entity 字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段类型"><span class="nav-number">1.4.</span> <span class="nav-text">字段类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">1.5.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entity-关系"><span class="nav-number">1.6.</span> <span class="nav-text">Entity 关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据传输对象-DTOs"><span class="nav-number">1.7.</span> <span class="nav-text">数据传输对象(DTOs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分页"><span class="nav-number">1.8.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新已存在的-Entity"><span class="nav-number">1.9.</span> <span class="nav-text">更新已存在的 Entity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#教程"><span class="nav-number">1.10.</span> <span class="nav-text">教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成-Author-entity"><span class="nav-number">1.10.1.</span> <span class="nav-text">生成 Author entity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成-Book-entity"><span class="nav-number">1.10.2.</span> <span class="nav-text">生成 Book entity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查生成的代码"><span class="nav-number">1.10.3.</span> <span class="nav-text">检查生成的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改善生成的代码"><span class="nav-number">1.10.4.</span> <span class="nav-text">改善生成的代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成了！"><span class="nav-number">1.10.5.</span> <span class="nav-text">完成了！</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2017/06/13/JHipster-学习笔记-6-创建-entity/';
+          this.page.identifier = '2017/06/13/JHipster-学习笔记-6-创建-entity/';
+          this.page.title = 'JHipster 学习笔记(六) - 创建 entity';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

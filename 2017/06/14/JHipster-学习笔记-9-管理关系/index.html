@@ -1,0 +1,1115 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="来自官网 管理关系当使用 JPA 时，实体子生成器可以创建实体之间的关系。 介绍关系仅在使用 JPA 时有效。 如果您选择使用 Cassandra 或 MongoDB，它们将不可用。 关系在两个实体之间工作，JHipster 将生成以下代码：  在生成的 JPA 实体中管理这种关系 创建正确的 Liquibase 变更日志，以便在数据库中体现关系 生成 AngularJS 前端，以便可以在用户界面">
+<meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster 学习笔记(九) - 管理关系">
+<meta property="og:url" content="http://jefferlau.me/2017/06/14/JHipster-学习笔记-9-管理关系/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="来自官网 管理关系当使用 JPA 时，实体子生成器可以创建实体之间的关系。 介绍关系仅在使用 JPA 时有效。 如果您选择使用 Cassandra 或 MongoDB，它们将不可用。 关系在两个实体之间工作，JHipster 将生成以下代码：  在生成的 JPA 实体中管理这种关系 创建正确的 Liquibase 变更日志，以便在数据库中体现关系 生成 AngularJS 前端，以便可以在用户界面">
+<meta property="og:updated_time" content="2017-06-14T07:48:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster 学习笔记(九) - 管理关系">
+<meta name="twitter:description" content="来自官网 管理关系当使用 JPA 时，实体子生成器可以创建实体之间的关系。 介绍关系仅在使用 JPA 时有效。 如果您选择使用 Cassandra 或 MongoDB，它们将不可用。 关系在两个实体之间工作，JHipster 将生成以下代码：  在生成的 JPA 实体中管理这种关系 创建正确的 Liquibase 变更日志，以便在数据库中体现关系 生成 AngularJS 前端，以便可以在用户界面">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2017/06/14/JHipster-学习笔记-9-管理关系/"/>
+
+
+
+
+
+  <title>JHipster 学习笔记(九) - 管理关系 | 谦和斋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">写代码的厨房</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/14/JHipster-学习笔记-9-管理关系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JHipster 学习笔记(九) - 管理关系
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-14T10:29:08+08:00">
+                2017-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/14/JHipster-学习笔记-9-管理关系/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/14/JHipster-学习笔记-9-管理关系/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/14/JHipster-学习笔记-9-管理关系/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(九) - 管理关系">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://jhipster.github.io/managing-relationships/" target="_blank" rel="external">来自官网</a></p>
+<h1 id="管理关系"><a href="#管理关系" class="headerlink" title="管理关系"></a>管理关系</h1><p>当使用 JPA 时，<a href="/2017/06/13/JHipster-学习笔记-6-创建-entity/" title="实体子生成器">实体子生成器</a>可以创建实体之间的关系。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>关系仅在使用 JPA 时有效。 如果您选择使用 <a href="https://jhipster.github.io/using-cassandra/" target="_blank" rel="external">Cassandra</a> 或 <a href="https://jhipster.github.io/using-mongodb/" target="_blank" rel="external">MongoDB</a>，它们将不可用。</p>
+<p>关系在两个实体之间工作，JHipster 将生成以下代码：</p>
+<ul>
+<li>在生成的 JPA 实体中管理这种关系</li>
+<li>创建正确的 Liquibase 变更日志，以便在数据库中体现关系</li>
+<li>生成 AngularJS 前端，以便可以在用户界面中以图形方式管理此关系</li>
+</ul>
+<h2 id="JHipster-UML-和-JDL-Studio"><a href="#JHipster-UML-和-JDL-Studio" class="headerlink" title="JHipster UML 和 JDL Studio"></a>JHipster UML 和 JDL Studio</h2><p>本页介绍如何使用标准命令行界面与 JHipster 建立关系。 如果要创建多个实体和关系，则可能更喜欢使用图形工具。</p>
+<p>在这种情况下，有两个选项可用：</p>
+<ul>
+<li>JHipster UML，它允许您使用 UML 编辑器。</li>
+<li>在线工具 JDL Studio，使用 domain-specific 语言创建实体和关系。</li>
+</ul>
+<p>您可以通过运行<code>jhipster import-jdl your-jdl-file.jh</code>，使用<code>import-jdl</code>子生成器从 JDL 文件生成具有关系的实体。</p>
+<h2 id="可用关系"><a href="#可用关系" class="headerlink" title="可用关系"></a>可用关系</h2><p>当我们使用 JPA 时，可以使用通常的一对多，多对一，多对多和一对一的关系：</p>
+<ol>
+<li><a href="https://jhipster.github.io/managing-relationships/#1" target="_blank" rel="external">双向一对多关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#2" target="_blank" rel="external">单向多对一关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#3" target="_blank" rel="external">单向一对多关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#4" target="_blank" rel="external">两个实体之间两个一对多关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#5" target="_blank" rel="external">多对多关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#6" target="_blank" rel="external">一对一关系</a></li>
+<li><a href="https://jhipster.github.io/managing-relationships/#7" target="_blank" rel="external">单向一对一关系</a></li>
+</ol>
+<p><em>提示：</em> <code>User</code>实体</p>
+<p>请注意，由 JHipster 处理的<code>User</code>实体具体可以做：</p>
+<ul>
+<li>与该实体的多对一(<code>many-to-one</code>)关系（<code>Car</code>可以与<code>User</code>具有多对一的关系）。 这将在您的新实体存储库中生成特定查询，因此可以实现一个常见的需求，在当前的 security 用户上过滤您的实体。 在生成的 AngularJS 客户端界面上，您将在<code>Car</code>中下拉选择一个<code>User</code>。</li>
+<li>与<code>User</code>实体的多对多(<code>many-to-many</code>)和一对一(<code>one-to-one</code>)的关系，但另一个实体必须是关系的所有者（一个 <code>Team</code> 可以与 <code>User</code> 有多对多的关系，但只有团队可以添加/删除用户，用户无法添加/删除团队）。 在 AngularJS 客户端 UI 中，您还可以在多选框中选择<code>User</code>。</li>
+</ul>
+<h3 id="双向一对多关系"><a href="#双向一对多关系" class="headerlink" title="双向一对多关系"></a>双向一对多关系</h3><p>我们从两个实体，一个所有者(<code>Owner</code>)和一个汽车(<code>Car</code>)开始。 车主可以有很多车，一辆车只能有一个车主。</p>
+<p>这是一个简单的一对多的关系（一个拥有者有很多车），另一方面是一对一的关系（多辆汽车有一个所有者）:</p>
+<style>
+<!-- 临时关闭行号 -->
+.highlight .gutter{
+  /*display: none;*/
+}
+</style>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Owner (1) &lt;-----&gt; (*) Car</div></pre></td></tr></table></figure>
+<p>我们将先创建 <code>Owner</code> (所有者)。 以下是 <code>Owner</code> 的相关 JHipster 问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">jhipster entity Owner</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Car</div><div class="line">? What is the name of the relationship? car</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? one-to-many</div><div class="line">? What is the name of this relationship <span class="keyword">in</span> the other entity? owner</div></pre></td></tr></table></figure>
+<p>请注意，我们选择了关于关系名称的默认选项。</p>
+<p>现在我们创建 <code>Car</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">jhipster entity Car</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Owner</div><div class="line">? What is the name of the relationship? owner</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-one</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Owner'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>使用以下 JDL 也可以同样的实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">entity Owner</div><div class="line">entity Car</div><div class="line"></div><div class="line">relationship OneToMany &#123;</div><div class="line">  Owner&#123;car&#125; to Car&#123;owner&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就这样，你现在在这两个实体之间有一对多的关系！ 在生成的 AngularJS 客户端界面上，您将在 <code>Car</code> 中下拉选择一个 <code>Owner</code>。</p>
+<h3 id="单向多对一关系"><a href="#单向多对一关系" class="headerlink" title="单向多对一关系"></a>单向多对一关系</h3><p>在上一个例子中，我们有一个双向关系：从一个<code>Car</code>实例，你可以找到它的所有者，并从一个<code>Owner</code>的实例，你可以得到所有的汽车。</p>
+<p>多对一的单向关系意味着汽车知道他们的主人，但是反过来车主不知道汽车。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Owner (1) &lt;----- (*) Car</div></pre></td></tr></table></figure>
+<p>你会做这样的关系有两个原因：</p>
+<ul>
+<li>从商业角度来看，您只能以这种方式使用您的实体。 所以你不想有一个让开发人员做一些没有意义的事情 API。</li>
+<li>使用 <code>Owner</code> 实体时，考虑到性能问题（因为它不需要管理汽车的集合）。</li>
+</ul>
+<p>在这种情况下，您仍然会先创建 <code>Owner</code> ，但此时不设置关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jhipster entity Owner</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? No</div></pre></td></tr></table></figure>
+<p>然后 <code>Car</code> 实体，如前面的例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">jhipster entity Car</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Owner</div><div class="line">? What is the name of the relationship? owner</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-one</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Owner'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>这将像上一个例子一样工作，但是您将无法从 <code>Owner</code> 实体添加或删除汽车。 在生成的 AngularJS 客户端界面上，您将在 <code>Car</code> 中下拉选择一个 <code>Owner</code> 。 这是相应的JDL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">entity Owner</div><div class="line">entity Car</div><div class="line"></div><div class="line">relationship ManyToOne &#123;</div><div class="line">  Car&#123;owner&#125; to Owner</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="单向一对多关系"><a href="#单向一对多关系" class="headerlink" title="单向一对多关系"></a>单向一对多关系</h3><p>一对多单向关系意味着 <code>Owner</code>实例可以获取其车辆的集合，但反过来不可以。 这与前面的例子相反。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Owner (1) -----&gt; (*) Car</div></pre></td></tr></table></figure>
+<p>JHipster 目前默认没有提供这种关系，请参阅<a href="https://github.com/jhipster/generator-jhipster/issues/1569" target="_blank" rel="external">#1569</a>了解更多信息。</p>
+<p>你有两个解决方案：</p>
+<ul>
+<li>执行双向映射，并使用它，而无需修改：这是我们推荐的方法，因为它更简单</li>
+<li>执行双向映射，然后进行修改，将其转换为单向映射：<ul>
+<li>删除 <code>@OneToMany</code> 注解上的 “mappedBy” 属性</li>
+<li>生成所需的连接表：您可以执行 <figure class="highlight plain"><figcaption><span>liquibase：diff``` 来生成该表，请参阅有关[使用Liquibase diff的文档](https://jhipster.github.io/development/)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这不是 JDL 支持的，因为它不在 JHipster 中。</div><div class="line"></div><div class="line">### 两个实体之间两个一对多关系</div><div class="line"></div><div class="line">对于这个例子，一个人(Person)可以是拥有汽车，他也可以驾驶多辆汽车：</div></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>Person (1) &lt;—owns—–&gt; (<em>) Car<br>Person (1) &lt;—drives—&gt; (</em>) Car<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">为此，我们需要使用关系名称，我们在前面的例子中留下了它们的默认值。</div><div class="line"></div><div class="line">生成与 ``Car`` 实体有两个一对多关系的 ``Person`` 实体：</div><div class="line"></div><div class="line">```bash</div><div class="line">jhipster entity Person</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Car</div><div class="line">? What is the name of the relationship? ownedCar</div><div class="line">? What is the type of the relationship? one-to-many</div><div class="line">? What is the name of this relationship in the other entity? owner</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Car</div><div class="line">? What is the name of the relationship? drivedCar</div><div class="line">? What is the type of the relationship? one-to-many</div><div class="line">? What is the name of this relationship in the other entity? driver</div></pre></td></tr></table></figure></p>
+<p>生成与 <code>Person</code> 实体配置相同关系名称的 <code>Car</code> 实体：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">jhipster entity Car</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Person</div><div class="line">? What is the name of the relationship? owner</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-one</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Person'</span> <span class="keyword">do</span> you want to use? id</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Person</div><div class="line">? What is the name of the relationship? driver</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-one</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Person'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>使用以下 JDL 也可以同样的实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">entity Person</div><div class="line">entity Car</div><div class="line"></div><div class="line">relationship OneToMany &#123;</div><div class="line">  Person&#123;ownedCar&#125; to Car&#123;owner&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">relationship OneToMany &#123;</div><div class="line">  Person&#123;drivedCar&#125; to Car&#123;driver&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一辆汽车 <code>Car</code> 现在可以有一个司机和一个所有者，这两个人都是 <code>Person</code> 实体。 在生成的 AngularJS 客户端界面中，您可以在 <code>Car</code> 下拉式选择一个 <code>owner</code> 字段和 <code>driver</code> 字段。</p>
+<h3 id="多对多关系"><a href="#多对多关系" class="headerlink" title="多对多关系"></a>多对多关系</h3><p>司机 <code>Driver</code> 可以驾驶很多车，但一辆汽车 <code>Car</code> 也可以有很多司机。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Driver (*) &lt;-----&gt; (*) Car</div></pre></td></tr></table></figure>
+<p>在数据库级别，这意味着我们将在 <code>Driver</code> 和 <code>Car</code> 表之间建立一个连接表。</p>
+<p>对于 JPA，这两个实体中的一个将需要管理关系：在我们的例子中，这将是 <code>Car</code> 实体，它将负责添加或删除司机。</p>
+<p>让我们产生关系的非拥有者的司机一方，具有多对多关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jhipster entity Driver</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Car</div><div class="line">? What is the name of the relationship? car</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-many</div><div class="line">? Is this entity the owner of the relationship? No</div><div class="line">? What is the name of this relationship <span class="keyword">in</span> the other entity? driver</div></pre></td></tr></table></figure>
+<p>然后生成 <code>Car</code>，与所有者一方是多对多的关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jhipster entity Car</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Driver</div><div class="line">? What is the name of the relationship? driver</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? many-to-many</div><div class="line">? Is this entity the owner of the relationship? Yes</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Driver'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>使用以下 JDL 也可以同样的实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">entity Driver</div><div class="line">entity Car</div><div class="line"></div><div class="line">relationship ManyToMany &#123;</div><div class="line">  Car&#123;driver&#125; to Driver&#123;car&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就这样，你们现在在这两个实体之间有两个多对多的关系！ 在生成的 AngularJS 客户端 UI 中，您将在 <code>Car</code> 中使用多选框选择多个 <code>Driver</code>，因为 <code>Car</code> 是拥有者。</p>
+<h3 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h3><p>按照我们的例子，一对一的关系意味着司机 <code>Driver</code> 只能驾驶一辆汽车 <code>Car</code> ，一辆汽车 <code>Car</code> 只能有一个 <code>Driver</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Driver (1) &lt;-----&gt; (1) Car</div></pre></td></tr></table></figure>
+<p>在我们的例子中我们先创建非拥有者 <code>Driver</code> 一方的关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jhipster entity Driver</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Car</div><div class="line">? What is the name of the relationship? car</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? one-to-one</div><div class="line">? Is this entity the owner of the relationship? No</div><div class="line">? What is the name of this relationship <span class="keyword">in</span> the other entity? driver</div></pre></td></tr></table></figure>
+<p>然后创建 <code>Car</code>，它拥有关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jhipster entity Car</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Driver</div><div class="line">? What is the name of the relationship? driver</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? one-to-one</div><div class="line">? Is this entity the owner of the relationship? Yes</div><div class="line">? What is the name of this relationship <span class="keyword">in</span> the other entity? car</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Driver'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>使用以下 JDL 也可以同样的实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">entity Driver</div><div class="line">entity Car</div><div class="line"></div><div class="line">relationship OneToOne &#123;</div><div class="line">  Car&#123;driver&#125; to Driver&#123;car&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>就这样，你现在在这两个实体之间有一对一的关系！ 在生成的 AngularJS 客户端 UI 中，您将在 <code>Car</code> 中下拉选择一个 <code>Driver</code>，因为 <code>Car</code> 是拥有者一方。</p>
+<h3 id="单向一对一关系"><a href="#单向一对一关系" class="headerlink" title="单向一对一关系"></a>单向一对一关系</h3><p>单向一对一关系意味着公民实例 <code>Citizen</code> 可以获取到护照，但护照 <code>Passport</code> 实例不能获取到其所有者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Citizen (1) -----&gt; (1) Passport</div></pre></td></tr></table></figure>
+<p>首先生成护照 <code>Passport</code> 实体，与其所有者没有任何关系：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jhipster entity Passport</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? No</div></pre></td></tr></table></figure>
+<p>然后，生成公民 <code>Citizen</code> 实体：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jhipster entity Citizen</div><div class="line">...</div><div class="line">Generating relationships with other entities</div><div class="line">? Do you want to add a relationship to another entity? Yes</div><div class="line">? What is the name of the other entity? Passport</div><div class="line">? What is the name of the relationship? passport</div><div class="line">? What is the <span class="built_in">type</span> of the relationship? one-to-one</div><div class="line">? Is this entity the owner of the relationship? Yes</div><div class="line">? What is the name of this relationship <span class="keyword">in</span> the other entity? citizen</div><div class="line">? When you display this relationship with AngularJS, <span class="built_in">which</span> field from <span class="string">'Passport'</span> <span class="keyword">do</span> you want to use? id</div></pre></td></tr></table></figure>
+<p>在这样做之后，公民 <code>Citizen</code> 拥有护照，但护照 <code>Passport</code> 中没有定义公民实例。 在生成的 AngularJS 客户端 UI 中，您将有一个公民 <code>Citizen</code> 下拉选择护照 <code>Passport</code>，因为公民 <code>Citizen</code> 是拥有的一方。 这是相应的JDL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">entity Citizen</div><div class="line">entity Passport</div><div class="line"></div><div class="line">relationship OneToOne &#123;</div><div class="line">  Citizen&#123;passport&#125; to Passport</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JHipster/" rel="tag"># JHipster</a>
+          
+            <a href="/tags/Modern-Web-apps/" rel="tag"># Modern Web apps</a>
+          
+            <a href="/tags/A-Beautiful-front-end/" rel="tag"># A Beautiful front-end</a>
+          
+            <a href="/tags/A-robust-and-high-quality-back-end/" rel="tag"># A robust and high-quality back-end</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/14/JHipster-学习笔记-10-国际化/" rel="next" title="JHipster 学习笔记(十) - 国际化">
+                <i class="fa fa-chevron-left"></i> JHipster 学习笔记(十) - 国际化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/14/JHipster-学习笔记-8-使用-DTO/" rel="prev" title="JHipster 学习笔记(八) - 使用 DTO">
+                JHipster 学习笔记(八) - 使用 DTO <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.youmeek.com/idea" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马到成功的博客" target="_blank">马到成功的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#管理关系"><span class="nav-number">1.</span> <span class="nav-text">管理关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JHipster-UML-和-JDL-Studio"><span class="nav-number">1.2.</span> <span class="nav-text">JHipster UML 和 JDL Studio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可用关系"><span class="nav-number">1.3.</span> <span class="nav-text">可用关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向一对多关系"><span class="nav-number">1.3.1.</span> <span class="nav-text">双向一对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向多对一关系"><span class="nav-number">1.3.2.</span> <span class="nav-text">单向多对一关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向一对多关系"><span class="nav-number">1.3.3.</span> <span class="nav-text">单向一对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多关系"><span class="nav-number">1.3.4.</span> <span class="nav-text">多对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一关系"><span class="nav-number">1.3.5.</span> <span class="nav-text">一对一关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单向一对一关系"><span class="nav-number">1.3.6.</span> <span class="nav-text">单向一对一关系</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2017/06/14/JHipster-学习笔记-9-管理关系/';
+          this.page.identifier = '2017/06/14/JHipster-学习笔记-9-管理关系/';
+          this.page.title = 'JHipster 学习笔记(九) - 管理关系';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

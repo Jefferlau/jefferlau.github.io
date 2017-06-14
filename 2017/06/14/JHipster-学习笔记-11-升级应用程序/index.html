@@ -1,0 +1,1049 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="来自官网 升级应用程序当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator)有助于将现有应用程序升级到新版本，而不会擦除您的更改。 这有助于：  在现有应用程序中拥有最新的 JHipster 功能 当有重要的错误修复或安全更新时，获取更改 保留您的代码库中的更改，并轻松地将其与新生成的代码合并  在进行升级之前，请仔细阅读本页，了解升级过">
+<meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster 学习笔记-11 - 升级应用程序">
+<meta property="og:url" content="http://jefferlau.me/2017/06/14/JHipster-学习笔记-11-升级应用程序/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="来自官网 升级应用程序当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator)有助于将现有应用程序升级到新版本，而不会擦除您的更改。 这有助于：  在现有应用程序中拥有最新的 JHipster 功能 当有重要的错误修复或安全更新时，获取更改 保留您的代码库中的更改，并轻松地将其与新生成的代码合并  在进行升级之前，请仔细阅读本页，了解升级过">
+<meta property="og:image" content="https://jhipster.github.io/images/upgrade_gitgraph.png">
+<meta property="og:updated_time" content="2017-06-14T08:50:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster 学习笔记-11 - 升级应用程序">
+<meta name="twitter:description" content="来自官网 升级应用程序当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator)有助于将现有应用程序升级到新版本，而不会擦除您的更改。 这有助于：  在现有应用程序中拥有最新的 JHipster 功能 当有重要的错误修复或安全更新时，获取更改 保留您的代码库中的更改，并轻松地将其与新生成的代码合并  在进行升级之前，请仔细阅读本页，了解升级过">
+<meta name="twitter:image" content="https://jhipster.github.io/images/upgrade_gitgraph.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2017/06/14/JHipster-学习笔记-11-升级应用程序/"/>
+
+
+
+
+
+  <title>JHipster 学习笔记-11 - 升级应用程序 | 谦和斋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">写代码的厨房</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/14/JHipster-学习笔记-11-升级应用程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JHipster 学习笔记-11 - 升级应用程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-14T16:20:13+08:00">
+                2017-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/14/JHipster-学习笔记-11-升级应用程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/14/JHipster-学习笔记-11-升级应用程序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/14/JHipster-学习笔记-11-升级应用程序/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记-11 - 升级应用程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://jhipster.github.io/upgrading-an-application/" target="_blank" rel="external">来自官网</a></p>
+<h1 id="升级应用程序"><a href="#升级应用程序" class="headerlink" title="升级应用程序"></a>升级应用程序</h1><p>当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator)有助于将现有应用程序升级到新版本，而不会擦除您的更改。</p>
+<p>这有助于：</p>
+<ul>
+<li>在现有应用程序中拥有最新的 JHipster 功能</li>
+<li>当有重要的错误修复或安全更新时，获取更改</li>
+<li>保留您的代码库中的更改，并轻松地将其与新生成的代码合并</li>
+</ul>
+<p><em>在进行升级之前，请仔细阅读本页，了解升级过程的工作原理。</em></p>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>对于这个子生成器，您需要从 <a href="">http://git-scm.com</a> 安装 <code>git</code>。</p>
+<h2 id="运行升级子生成器"><a href="#运行升级子生成器" class="headerlink" title="运行升级子生成器"></a>运行升级子生成器</h2><p>进入应用根目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> myapplication/</div></pre></td></tr></table></figure>
+<p>要升级您的应用程序，请键入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jhipster upgrade</div></pre></td></tr></table></figure>
+<p>以下是您可以使用的选项：</p>
+<ul>
+<li>–verbose - 详细记录升级过程的每一步</li>
+<li>–target-version=4.2.0 - 升级到目标版本，而不是最新的版本，如果一个项目落后了几个版本，这是非常有用的，需要逐级升级</li>
+<li>–force - 即使没有新的 JHipster 版本，强制运行升级子生成器</li>
+</ul>
+<h2 id="升级过程的图形视图"><a href="#升级过程的图形视图" class="headerlink" title="升级过程的图形视图"></a>升级过程的图形视图</h2><p>以下以图形方式展示升级过程如何工作（请阅读以下部分以获得文字说明）：</p>
+<p><img src="https://jhipster.github.io/images/upgrade_gitgraph.png" alt=""></p>
+<p>（这张图片来自 <a href="http://jsfiddle.net/lordlothar99/tqp9gyu3/" target="_blank" rel="external">JSFiddle</a> ）</p>
+<p>请注意，<code>jhipster_upgrade</code> 分支将在您的项目中创建为孤儿，尽管在上图上没有正确显示。</p>
+<h2 id="升级过程的逐步说明"><a href="#升级过程的逐步说明" class="headerlink" title="升级过程的逐步说明"></a>升级过程的逐步说明</h2><p>以下是 JHipster 升级子生成器处理的步骤：</p>
+<ol>
+<li>检查是否有新版本的 JHipster 可用（如果您使用 <code>--force</code> 不适用）。</li>
+<li>检查应用程序是否已被初始化为 <code>git</code> 存储库，否则 JHipster 将为您初始化一个，并将当前代码库提交给主分支。</li>
+<li>检查以确保存储库中没有未提交的本地更改。 如果发现未提交的更改，则进程将退出。</li>
+<li>检查是否存在 <code>jhipster_upgrade</code> 分支。 如果没有，将创建一个分支：在“第一次升级中执行的特定步骤”部分中提供有关此步骤的详细信息。</li>
+<li>检出 <code>jhipster_upgrade</code> 分支。</li>
+<li>将 JHipster 升级到全球最新版本。</li>
+<li>清理当前项目目录。</li>
+<li>使用 <code>jhipster --force --with-entities</code> 命令重新生成应用程序。</li>
+<li>将生成的代码提交到 <code>jhipster_upgrade</code> 分支。</li>
+<li>将 <code>jhipster_upgrade</code> 分支合并回启动 <code>jhipster upgrade</code> 升级命令的原始分支。</li>
+<li>现在你只需要解决合并冲突，如果有的话。</li>
+</ol>
+<p>恭喜，您的应用程序现在已升级为最新版本的 JHipster</p>
+<h2 id="首次升级时执行的具体步骤"><a href="#首次升级时执行的具体步骤" class="headerlink" title="首次升级时执行的具体步骤"></a>首次升级时执行的具体步骤</h2><p>在 JHipster 升级子生成器的第一次执行时，为了避免擦除所有更改，将执行一些其他步骤：</p>
+<ol>
+<li><code>jhipster_upgrade</code> 分支被创建为孤儿（没有父项）</li>
+<li>整个应用程序生成（使用您当前的 JHipster 版本）。</li>
+<li>在主分支 <code>master</code> 上进行块合并提交：在主分支 <code>master</code> 上的代码库上不进行任何更改; 这只是在 Git 中记录 <code>master</code> 的 HEAD 与当前 JHipster 最新版本 。</li>
+</ol>
+<h2 id="忠告"><a href="#忠告" class="headerlink" title="忠告"></a>忠告</h2><p>不要在 <code>jhipster_upgrade</code> 分支上提交任何内容。 该分支专用于 JHipster 升级子生成器：每次运行子生成器时，将创建一个新的提交。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JHipster/" rel="tag"># JHipster</a>
+          
+            <a href="/tags/Modern-Web-apps/" rel="tag"># Modern Web apps</a>
+          
+            <a href="/tags/A-Beautiful-front-end/" rel="tag"># A Beautiful front-end</a>
+          
+            <a href="/tags/A-robust-and-high-quality-back-end/" rel="tag"># A robust and high-quality back-end</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/14/JHipster-学习笔记-10-国际化/" rel="prev" title="JHipster 学习笔记(十) - 国际化">
+                JHipster 学习笔记(十) - 国际化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.youmeek.com/idea" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马到成功的博客" target="_blank">马到成功的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#升级应用程序"><span class="nav-number">1.</span> <span class="nav-text">升级应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">1.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行升级子生成器"><span class="nav-number">1.2.</span> <span class="nav-text">运行升级子生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级过程的图形视图"><span class="nav-number">1.3.</span> <span class="nav-text">升级过程的图形视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级过程的逐步说明"><span class="nav-number">1.4.</span> <span class="nav-text">升级过程的逐步说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首次升级时执行的具体步骤"><span class="nav-number">1.5.</span> <span class="nav-text">首次升级时执行的具体步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忠告"><span class="nav-number">1.6.</span> <span class="nav-text">忠告</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2017/06/14/JHipster-学习笔记-11-升级应用程序/';
+          this.page.identifier = '2017/06/14/JHipster-学习笔记-11-升级应用程序/';
+          this.page.title = 'JHipster 学习笔记-11 - 升级应用程序';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

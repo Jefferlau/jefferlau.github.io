@@ -1,0 +1,1085 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="来自官网 推荐在开始前先看看官方视频 video tutorial! 通用配置IDE 配置如果还没配置 IDE，请移步配置 IDE。 应用配置默认情况下，JHipster 使用“development” profile，因此可以不改变任何配置。 如果你想获取更多可以用的 profiles 信息，请移步 “Profiles”。 如果想配置特定的 JHipster 属性，请参阅 应用程序属性文件。 运">
+<meta name="keywords" content="Java,JHipster,Modern Web apps,A Beautiful front-end,A robust and high-quality back-end">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JHipster 学习笔记(二) - 在开发中使用 JHipster">
+<meta property="og:url" content="http://jefferlau.me/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="来自官网 推荐在开始前先看看官方视频 video tutorial! 通用配置IDE 配置如果还没配置 IDE，请移步配置 IDE。 应用配置默认情况下，JHipster 使用“development” profile，因此可以不改变任何配置。 如果你想获取更多可以用的 profiles 信息，请移步 “Profiles”。 如果想配置特定的 JHipster 属性，请参阅 应用程序属性文件。 运">
+<meta property="og:updated_time" content="2017-06-13T08:01:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JHipster 学习笔记(二) - 在开发中使用 JHipster">
+<meta name="twitter:description" content="来自官网 推荐在开始前先看看官方视频 video tutorial! 通用配置IDE 配置如果还没配置 IDE，请移步配置 IDE。 应用配置默认情况下，JHipster 使用“development” profile，因此可以不改变任何配置。 如果你想获取更多可以用的 profiles 信息，请移步 “Profiles”。 如果想配置特定的 JHipster 属性，请参阅 应用程序属性文件。 运">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/"/>
+
+
+
+
+
+  <title>JHipster 学习笔记(二) - 在开发中使用 JHipster | 谦和斋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">写代码的厨房</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JHipster 学习笔记(二) - 在开发中使用 JHipster
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T09:43:21+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(二) - 在开发中使用 JHipster">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://jhipster.github.io/development/" target="_blank" rel="external">来自官网</a></p>
+<p>推荐在开始前先看看官方视频 <a href="https://jhipster.github.io/video-tutorial/" target="_blank" rel="external">video tutorial</a>!</p>
+<h1 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h1><h2 id="IDE-配置"><a href="#IDE-配置" class="headerlink" title="IDE 配置"></a>IDE 配置</h2><p>如果还没配置 IDE，请移步<a href="https://jhipster.github.io/configuring-ide/" target="_blank" rel="external">配置 IDE</a>。</p>
+<h2 id="应用配置"><a href="#应用配置" class="headerlink" title="应用配置"></a>应用配置</h2><p>默认情况下，JHipster 使用“development” profile，因此可以不改变任何配置。</p>
+<p>如果你想获取更多可以用的 profiles 信息，请移步 <a href="https://jhipster.github.io/profiles/" target="_blank" rel="external">“Profiles”</a>。</p>
+<p>如果想配置特定的 JHipster 属性，请参阅 <a href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" title="应用程序属性文件">应用程序属性文件</a>。</p>
+<h1 id="运行-Java-服务"><a href="#运行-Java-服务" class="headerlink" title="运行 Java 服务"></a>运行 Java 服务</h1><h2 id="使用-“main”-Java-class-运行"><a href="#使用-“main”-Java-class-运行" class="headerlink" title="使用 “main” Java class 运行"></a>使用 “main” Java class 运行</h2><p>在 IDE 中运行主类 main 方法。</p>
+<h2 id="使用-Maven-运行"><a href="#使用-Maven-运行" class="headerlink" title="使用 Maven 运行"></a>使用 Maven 运行</h2><p>使用项目包装的 Maven <code>./mvnw</code> (on Mac OS X/Linux) of <code>mvnw</code> (on Windows)<br>使用本地已安装的 Maven <code>mvn</code>，更多的 Maven 使用信息请移步<a href="">http://maven.apache.org/</a><br>将会执行默认 Maven 任务, <code>spring-boot:run</code></p>
+<h2 id="使用-Gradle-运行"><a href="#使用-Gradle-运行" class="headerlink" title="使用 Gradle 运行"></a>使用 Gradle 运行</h2><p>使用项目包装的 Gradle <code>./gradlew</code> (on Mac OS X/Linux) of <code>gradlew</code> (on Windows)<br>使用本地已安装的 Gradle <code>gradle</code>，更多的 Gradle 使用信息请移步 <a href="">https://gradle.org/</a><br>将会执行默认 Gradle 任务, <code>bootRun</code></p>
+<h1 id="使用-Angular"><a href="#使用-Angular" class="headerlink" title="使用 Angular"></a>使用 Angular</h1><h2 id="运行-Webpack"><a href="#运行-Webpack" class="headerlink" title="运行 Webpack"></a>运行 Webpack</h2><p>只需要运行<code>yarn start</code>或<code>npm start</code></p>
+<p>这样运行有非常美妙的功能：</p>
+<ul>
+<li>一旦修改了 HTML / CSS / TypeScript 文件，浏览器就会自动刷新</li>
+<li>当您在几个不同的浏览器或设备上测试应用程序时，所有点击、滚动和输入都会在所有屏幕上自动同步</li>
+</ul>
+<p>这将会启动:</p>
+<ul>
+<li>Webpack 自动将 TypeScript 代码编译成 JavaScript 的任务</li>
+<li>Webpack 模块热加载服务运行在 <a href="">http://localhost:9060/</a> (同时代理访问 <a href="">http://127.0.0.1:8080/api</a> Java 后端)</li>
+<li>BrowserSync 运行在 <a href="">http://localhost:9000/</a>，它有一个代理 <a href="">http://localhost:9060/</a>(Webpack 模块热加载服务)，并且它将同步用户的点击、滚动和输入。</li>
+<li>BrowserSync UI，它运行在 <a href="">http://localhost:3001/</a></li>
+</ul>
+<h2 id="运行-Yarn"><a href="#运行-Yarn" class="headerlink" title="运行 Yarn"></a>运行 Yarn</h2><p>项目直接依赖关系被配置到<code>package.json</code>中，但是传递依赖关系被定义在<code>yarn.lock</code>文件，它在运行<code>yarn install</code>时生成。</p>
+<p>建议将<code>yarn.lock</code>放到源代码版本控制中，以便项目组的所有团队成员的所有依赖关系都具有相同的版本。<br>再次运行<code>yarn install</code>将重新生成具有最新版本的传递依赖关系的<code>yarn.lock</code>。</p>
+<h2 id="其他-Yarn-NPM-任务"><a href="#其他-Yarn-NPM-任务" class="headerlink" title="其他 Yarn / NPM 任务"></a>其他 Yarn / NPM 任务</h2><p>无论您使用 Yarn 还是 NPM，都可以使用 <code>yarn</code> 命令作为示例，但可以用 <code>npm</code> 替换它们。</p>
+<ul>
+<li><code>yarn lint</code>: 检查 TypeScript 代码风格问题</li>
+<li><code>yarn lint:fix</code>: 尝试自动纠正 TypeScript lint 风格问题</li>
+<li><code>yarn tsc</code>: 编译 TypeScript 代码</li>
+<li><code>yarn test</code>: 使用 Karma 运行单元测试</li>
+<li><code>yarn test:watch</code>: 保持 karma 单元测试运行, 代码更改时实时反馈</li>
+<li><code>yarn e2e</code>: 使用 Protractor 运行“端到端”测试（仅在生成项目时选择了 Protractor 选项时才有效）</li>
+</ul>
+<h1 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h1><h2 id="运行数据库"><a href="#运行数据库" class="headerlink" title="运行数据库"></a>运行数据库</h2><p>使用像 MySQL, MariaDB, PostgreSQL, MSSQL, MongoDB 或 Cassandra 等非嵌入式数据库时，需要自己安装和配置。</p>
+<p>JHipster 推荐的最简单的方法是使用 Docker Compose。 <a href="https://jhipster.github.io/docker-compose/" target="_blank" rel="external">参考 Docker 撰写指南</a>。</p>
+<p>如果您希望手动安装和配置数据库，请不要忘记在<code>src/main/resources/config/application-*.yml</code>文件（例如数据库URL，登录名和密码）中配置 Spring Boot 属性。</p>
+<h2 id="在开发中使用-H2-数据库"><a href="#在开发中使用-H2-数据库" class="headerlink" title="在开发中使用 H2 数据库"></a>在开发中使用 H2 数据库</h2><p>如果选择 H2 数据库，则应用程序中将运行内存中的数据库，默认情况下，您可以通过地址<a href="">http://localhost:8080/h2-console</a>访问控制台。</p>
+<p>要连接到数据库，请选择预配置的选项：</p>
+<ul>
+<li>Driver Class: org.h2.Driver</li>
+<li>JDBC URL: jdbc:h2:mem:jhipster</li>
+<li>User name:</li>
+<li>Password:</li>
+</ul>
+<h2 id="在开发中使用-MySQL-MariaDB-或-PostgreSQL"><a href="#在开发中使用-MySQL-MariaDB-或-PostgreSQL" class="headerlink" title="在开发中使用 MySQL, MariaDB 或 PostgreSQL"></a>在开发中使用 MySQL, MariaDB 或 PostgreSQL</h2><p>此选项比使用 H2 更复杂，但有一些重要的好处：</p>
+<ul>
+<li>数据在应用程序重新启动时保持不变</li>
+<li>应用程序启动的更快一点</li>
+<li>可以使用强大的 <code>./mvnw liquibase：diff</code>目标（见下文）</li>
+</ul>
+<h2 id="数据库更新"><a href="#数据库更新" class="headerlink" title="数据库更新"></a>数据库更新</h2><p>如果增加或修改了 JPA entity，将需要更新数据库。</p>
+<p>JHipster使用<a href="http://www.liquibase.org/" target="_blank" rel="external"><code>Liquibase</code></a>来管理数据库更新，并将其配置存储在<code>/src/main/resources/config/liquibase/</code>目录中。 使用 Liquibase 有3种方法：使用实体子生成器(entity sub-generator)，使用 liquibase：diff Maven目标，或手动更新配置文件。</p>
+<h3 id="使用-Maven-liquibase-diff-更新数据库"><a href="#使用-Maven-liquibase-diff-更新数据库" class="headerlink" title="使用 Maven liquibase:diff 更新数据库"></a>使用 Maven liquibase:diff 更新数据库</h3><p>如果选择在开发中使用 MySQL，MariaDB 或 PostgreSQL，则可以使用 <code>./mvnw liquibase:diff</code>目标自动生成 changelog。</p>
+<p>如果您使用基于磁盘的持久性运行 H2，这个尚不能完美工作，但您可以开始尝试使用它（并向官方发送反馈！）。</p>
+<p><a href="https://github.com/liquibase/liquibase-hibernate" target="_blank" rel="external">Liquibase Hibernate</a> 是一个在 Maven pom.xml 中配置的插件，与 Spring application.yml 文件无关，因此如果更改了默认设置（例如，更改了数据库密码），则需要修改这两个文件。</p>
+<p>这是开发工作流程：</p>
+<ul>
+<li>修改 JPA entity (增加字段 [field], 关系 [relationship], 等。)</li>
+<li>编译应用 (编译 Java 代码)</li>
+<li>运行 <code>./mvnw liquibase:diff</code> (或 <code>./mvnw compile liquibase:diff</code>)</li>
+<li>新的 “change log” 被创建在 <code>src/main/resources/config/liquibase/changelog</code> 文件夹</li>
+<li>查看此 “change log” 并将其添加到您的 <code>src/main/resources/config/liquibase/master.xml</code> 文件, 在下次运行应用程序时应用它</li>
+</ul>
+<p>如果您使用 Gradle 而不是 Maven，则可以通过运行 <code>./gradlew liquibaseDiffChangelog</code>来使用相同的工作流程，如果需要，可以更改<code>liquibase.gradle</code>中的数据库配置。</p>
+<h3 id="手工修改-change-log-更新数据库"><a href="#手工修改-change-log-更新数据库" class="headerlink" title="手工修改 change log 更新数据库"></a>手工修改 change log 更新数据库</h3><p>如果您喜欢（或需要）手动进行数据库更新，则以下是开发工作流程：</p>
+<ul>
+<li>修改 JPA entity (增加字段 [field], 关系 [relationship], 等。)</li>
+<li>创建新的 “change log” 在<code>src/main/resources/config/liquibase/changelog</code> 文件夹。该目录中的文件以其创建日期（以 yyyyMMddHHmmss 格式）为前缀，然后具有描述其作用的标题。 例如，<code>20141006152300_added_price_to_product.xml</code>是一个好名字。</li>
+<li>添加 “change log” 文件到 <code>src/main/resources/config/liquibase/master.xml</code> 文件, 在下次运行应用程序时应用它</li>
+</ul>
+<p>如果想了解更多的 Liquibase 使用信息，请移步<a href="">http://www.liquibase.org</a>。</p>
+<h2 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h2><p>国际化（或i18n）是 JHipster 的一等公民，我们相信应该在项目开始时设置（而不是事后的想法）。</p>
+<p>用法真的很简单：</p>
+<ul>
+<li>使用 AngularJS 1，感谢 <a href="https://github.com/PascalPrecht/angular-translate" target="_blank" rel="external">Angular Translate</a>，它为 i18n 提供了一个简单的 AngularJS 指令</li>
+<li>使用 AngularJS 2+，感谢 <a href="https://github.com/ocombe/ng2-translate" target="_blank" rel="external">NG2 translate</a> 和一个特定的 JHipster 组件，它与 Angular Translate 相同，并使用相同的文件</li>
+</ul>
+<p>例如，要将翻译添加到“first name”字段中，只需添加一个“translate”属性和一个键：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">translate</span>=<span class="string">"settings.form.firstname"</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>此键引用一个 JSON 文档，它将返回已翻译的字符串。 然后 Angular 将用翻译的版本替换 “First Name” 字符串。</p>
+<p>如果您需要有关使用语言的更多信息，请阅读官方的<a href="https://jhipster.github.io/installing-new-languages/" target="_blank" rel="external">安装新语言文档</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/JHipster/" rel="tag"># JHipster</a>
+          
+            <a href="/tags/Modern-Web-apps/" rel="tag"># Modern Web apps</a>
+          
+            <a href="/tags/A-Beautiful-front-end/" rel="tag"># A Beautiful front-end</a>
+          
+            <a href="/tags/A-robust-and-high-quality-back-end/" rel="tag"># A robust and high-quality back-end</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/JHipster-学习笔记-3-管理-Profiles/" rel="next" title="JHipster 学习笔记(三) - 管理 Profiles">
+                <i class="fa fa-chevron-left"></i> JHipster 学习笔记(三) - 管理 Profiles
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/09/JHipster-学习笔记-1-Quick-start/" rel="prev" title="JHipster 学习笔记(一) - Quick start">
+                JHipster 学习笔记(一) - Quick start <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.youmeek.com/idea" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马到成功的博客" target="_blank">马到成功的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通用配置"><span class="nav-number">1.</span> <span class="nav-text">通用配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDE-配置"><span class="nav-number">1.1.</span> <span class="nav-text">IDE 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用配置"><span class="nav-number">1.2.</span> <span class="nav-text">应用配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行-Java-服务"><span class="nav-number">2.</span> <span class="nav-text">运行 Java 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-“main”-Java-class-运行"><span class="nav-number">2.1.</span> <span class="nav-text">使用 “main” Java class 运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Maven-运行"><span class="nav-number">2.2.</span> <span class="nav-text">使用 Maven 运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Gradle-运行"><span class="nav-number">2.3.</span> <span class="nav-text">使用 Gradle 运行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Angular"><span class="nav-number">3.</span> <span class="nav-text">使用 Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行-Webpack"><span class="nav-number">3.1.</span> <span class="nav-text">运行 Webpack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行-Yarn"><span class="nav-number">3.2.</span> <span class="nav-text">运行 Yarn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他-Yarn-NPM-任务"><span class="nav-number">3.3.</span> <span class="nav-text">其他 Yarn / NPM 任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用数据库"><span class="nav-number">4.</span> <span class="nav-text">使用数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行数据库"><span class="nav-number">4.1.</span> <span class="nav-text">运行数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在开发中使用-H2-数据库"><span class="nav-number">4.2.</span> <span class="nav-text">在开发中使用 H2 数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在开发中使用-MySQL-MariaDB-或-PostgreSQL"><span class="nav-number">4.3.</span> <span class="nav-text">在开发中使用 MySQL, MariaDB 或 PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库更新"><span class="nav-number">4.4.</span> <span class="nav-text">数据库更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Maven-liquibase-diff-更新数据库"><span class="nav-number">4.4.1.</span> <span class="nav-text">使用 Maven liquibase:diff 更新数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手工修改-change-log-更新数据库"><span class="nav-number">4.4.2.</span> <span class="nav-text">手工修改 change log 更新数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#国际化"><span class="nav-number">4.5.</span> <span class="nav-text">国际化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/';
+          this.page.identifier = '2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/';
+          this.page.title = 'JHipster 学习笔记(二) - 在开发中使用 JHipster';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
