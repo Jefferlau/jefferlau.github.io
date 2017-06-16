@@ -293,6 +293,212 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/" itemprop="url">
+                  JHipster 学习笔记(十二) - 项目实战-单体应用(1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T08:40:37+08:00">
+                2017-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JHipster/" itemprop="url" rel="index">
+                    <span itemprop="name">JHipster</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(十二) - 项目实战-单体应用(1)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>项目名称： <a href="https://github.com/Jefferlau/hipsters-financial-services-monolithic" target="_blank" rel="external">潮人金融服务</a></p>
+<p>项目功能：</p>
+<ol>
+<li>分前后台用户<ul>
+<li>前台用户注册、登录、投资及查询</li>
+<li>后台用户管理用户和资产等</li>
+</ul>
+</li>
+<li>系统功能<ul>
+<li>支付回调</li>
+<li>每日对账</li>
+</ul>
+</li>
+</ol>
+<p>先简单提出这些伪需求，后续进行实现。</p>
+<h1 id="系统划分"><a href="#系统划分" class="headerlink" title="系统划分"></a>系统划分</h1><ul>
+<li>平台界面及接口</li>
+<li>账务中心</li>
+<li>定时调度</li>
+</ul>
+<h1 id="项目结构规划"><a href="#项目结构规划" class="headerlink" title="项目结构规划"></a>项目结构规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hipsters-financial-services-monolithic</div><div class="line">├── hipsters-financial-services-monolithic-web</div><div class="line">├── hipsters-financial-services-monolithic-financial</div><div class="line">└── hipsters-financial-services-monolithic-schedule</div></pre></td></tr></table></figure>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>这里提供两种比较便捷的 Docker 运行 Kafka 的方式，根据需要任选其一即可。</p>
+<h3 id="For-Dev"><a href="#For-Dev" class="headerlink" title="For Dev"></a>For Dev</h3><p>开发环境运行个二合一的镜像即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker pull spotify/kafka</div><div class="line">docker run --name spotify-kafka -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/kafka</div></pre></td></tr></table></figure>
+<h3 id="For-Prod"><a href="#For-Prod" class="headerlink" title="For Prod"></a>For Prod</h3><p>这里将使用 docker 运行 kafka，kafka 运行依赖于 zookeeper，所以这两个镜像都要拉下来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker pull zookeeper</div><div class="line">docker pull wurstmeister/kafka</div><div class="line"></div><div class="line">docker run --name zookeeper -p 2181 zookeeper</div><div class="line">docker run --name kafka <span class="_">-e</span> HOST_IP=localhost <span class="_">-e</span> KAFKA_ADVERTISED_PORT=9092 <span class="_">-e</span> KAFKA_BROKER_ID=1 <span class="_">-e</span> ZK=zk -p 9092 --link zookeeper:zk wurstmeister/kafka</div></pre></td></tr></table></figure>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><h2 id="初始化-Git-代码库"><a href="#初始化-Git-代码库" class="headerlink" title="初始化 Git 代码库"></a>初始化 Git 代码库</h2><ol>
+<li>按上述项目结构规划在 Git 代码库创建四个仓库。</li>
+<li>进入工作空间 clone 根项目<code>git clone git clone git@github.com:Jefferlau/hipsters-financial-services-monolithic.git</code></li>
+<li>进入根项目目录 <code>cd hipsters-financial-services-monolithic</code></li>
+<li>分别将子项目引入<ul>
+<li><code>git submodule add git@github.com:Jefferlau/hipsters-financial-services-monolithic-web.git web</code></li>
+<li><code>git submodule add git@github.com:Jefferlau/hipsters-financial-services-monolithic-financial.git financial</code></li>
+<li><code>git submodule add git@github.com:Jefferlau/hipsters-financial-services-monolithic-schedule.git schedule</code></li>
+<li><code>git submodule add git@github.com:Jefferlau/jhipster-registry.git registry</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="初始化-registry"><a href="#初始化-registry" class="headerlink" title="初始化 registry"></a>初始化 registry</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> registry</div><div class="line">yarn install</div></pre></td></tr></table></figure>
+<h2 id="创建-JHipster-单体项目"><a href="#创建-JHipster-单体项目" class="headerlink" title="创建 JHipster 单体项目"></a>创建 JHipster 单体项目</h2><p>进入 web 子项目目录，然后创建 JHipster 项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> web</div><div class="line">yarn global upgrade generator-jhipster</div><div class="line">jhipster</div></pre></td></tr></table></figure>
+<p>输出内容及问答</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">Running default command</div><div class="line">Executing jhipster:app</div><div class="line"></div><div class="line">        ██╗ ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗</div><div class="line">        ██║ ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗</div><div class="line">        ██║ ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝</div><div class="line">  ██╗   ██║ ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║</div><div class="line">  ╚██████╔╝ ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗</div><div class="line">   ╚═════╝  ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝</div><div class="line"></div><div class="line">                            https://jhipster.github.io</div><div class="line"></div><div class="line">Welcome to the JHipster Generator v4.5.3</div><div class="line">Documentation for creating an application: https://jhipster.github.io/creating-an-app/</div><div class="line">Application files will be generated in folder: /Users/liutiyang/project/java/laboratory/jhipster/hipsters-financial-services-monolithic/web</div><div class="line">? (1/16) Which *type* of application would you like to create? Monolithic application (re</div><div class="line">commended for simple projects)</div><div class="line">? (2/16) What is the base name of your application? web</div><div class="line">? (3/16) Would you like to install other generators from the JHipster Marketplace? No</div><div class="line">? (4/16) What is your default Java package name? me.jefferlau</div><div class="line">? (5/16) Do you want to use the JHipster Registry to configure, monitor and scale your ap</div><div class="line">plication? Yes</div><div class="line">? (6/16) Which *type* of database would you like to use? SQL (H2, MySQL, MariaDB, Postgre</div><div class="line">SQL, Oracle, MSSQL)</div><div class="line">? (7/16) Which *production* database would you like to use? MySQL</div><div class="line">? (8/16) Which *development* database would you like to use? MySQL</div><div class="line">? (9/16) Do you want to use Hibernate 2nd level cache? Yes, with ehcache (local cache, fo</div><div class="line">r a single node)</div><div class="line">? (10/16) Would you like to use Maven or Gradle for building the backend? Maven</div><div class="line">? (11/16) Which other technologies would you like to use? [BETA] Asynchronous messages us</div><div class="line">ing Apache Kafka</div><div class="line">? (12/16) Which *Framework* would you like to use for the client? [BETA] Angular 4</div><div class="line">? (13/16) Would you like to use the LibSass stylesheet preprocessor for your CSS? Yes</div><div class="line">? (14/16) Would you like to enable internationalization support? Yes</div><div class="line">? Please choose the native language of the application? Chinese (Simplified)</div><div class="line">? Please choose additional languages to install Chinese (Traditional)</div><div class="line">? (15/16) Besides JUnit and Karma, which testing frameworks would you like to use? (Press</div><div class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to inverse selection)Gatling, Cucumber, Protra</div><div class="line">ctor</div><div class="line"></div><div class="line">Installing languages: zh-cn, zh-tw</div><div class="line">   create package.json</div><div class="line"> conflict README.md</div><div class="line">? Overwrite README.md? overwrite</div><div class="line">    force README.md</div><div class="line"> conflict .gitignore</div><div class="line">? Overwrite .gitignore? overwrite</div><div class="line">    force .gitignore</div><div class="line">   create .gitattributes</div><div class="line">   create .editorconfig</div><div class="line">   ...</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/14/JHipster-学习笔记-11-升级应用程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -414,7 +620,7 @@
         
           
             <p><a href="https://jhipster.github.io/upgrading-an-application/" target="_blank" rel="external">来自官网</a></p>
-<h1 id="升级应用程序"><a href="#升级应用程序" class="headerlink" title="升级应用程序"></a>升级应用程序</h1><p>当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator)有助于将现有应用程序升级到新版本，而不会擦除您的更改。</p>
+<h1 id="升级应用程序"><a href="#升级应用程序" class="headerlink" title="升级应用程序"></a>升级应用程序</h1><p>当新版本的 JHipster 发布时，JHipster 升级子生成器(upgrade sub-generator) 有助于将现有应用程序升级到新版本，而不会擦除您的更改。</p>
 <p>这有助于：</p>
 <ul>
 <li>在现有应用程序中拥有最新的 JHipster 功能</li>
@@ -1806,7 +2012,7 @@
         
           
             <p><a href="https://jhipster.github.io/using-angular/" target="_blank" rel="external">来自官网</a></p>
-<p>附<a href="https://angular.cn/docs/ts/latest/quickstart.html" target="_blank" rel="external">Angular 上手中文教程</a></p>
+<p>附{<a href="https://angular.cn/docs/ts/latest/quickstart.html" target="_blank" rel="external">Angular 上手中文教程</a></p>
 <h1 id="使用-Angular"><a href="#使用-Angular" class="headerlink" title=" 使用 Angular"></a><h1 id="-using-angular"><i class="fa fa-html5"></i> 使用 Angular</h1></h1><p>请注意本章节仅供 Angular 2+ 参考，AngularJS 1.x 请移步 <a href="https://jhipster.github.io/using-angularjs/" target="_blank" rel="external">使用 AngularJS 文档</a></p>
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>Angular 2+ 使用的是 TypeScript 而不是 JavaScript，结果有一些特定的工具是我们有效的工作。 我们的 Angular 2+ 应用的开发工作流程如下，如果您愿意，可以使用 <code>npm</code> 代替 <code>yarn。</code></p>
 <ol>
@@ -2365,249 +2571,6 @@ table th:first-of-type {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeffer Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="谦和斋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" itemprop="url">
-                  JHipster 学习笔记(二) - 在开发中使用 JHipster
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T09:43:21+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JHipster/" itemprop="url" rel="index">
-                    <span itemprop="name">JHipster</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/12/JHipster-学习笔记-2-在开发中使用-JHipster/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(二) - 在开发中使用 JHipster">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://jhipster.github.io/development/" target="_blank" rel="external">来自官网</a></p>
-<p>推荐在开始前先看看官方视频 <a href="https://jhipster.github.io/video-tutorial/" target="_blank" rel="external">video tutorial</a>!</p>
-<h1 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h1><h2 id="IDE-配置"><a href="#IDE-配置" class="headerlink" title="IDE 配置"></a>IDE 配置</h2><p>如果还没配置 IDE，请移步<a href="https://jhipster.github.io/configuring-ide/" target="_blank" rel="external">配置 IDE</a>。</p>
-<h2 id="应用配置"><a href="#应用配置" class="headerlink" title="应用配置"></a>应用配置</h2><p>默认情况下，JHipster 使用“development” profile，因此可以不改变任何配置。</p>
-<p>如果你想获取更多可以用的 profiles 信息，请移步 <a href="https://jhipster.github.io/profiles/" target="_blank" rel="external">“Profiles”</a>。</p>
-<p>如果想配置特定的 JHipster 属性，请参阅 <a href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" title="应用程序属性文件">应用程序属性文件</a>。</p>
-<h1 id="运行-Java-服务"><a href="#运行-Java-服务" class="headerlink" title="运行 Java 服务"></a>运行 Java 服务</h1><h2 id="使用-“main”-Java-class-运行"><a href="#使用-“main”-Java-class-运行" class="headerlink" title="使用 “main” Java class 运行"></a>使用 “main” Java class 运行</h2><p>在 IDE 中运行主类 main 方法。</p>
-<h2 id="使用-Maven-运行"><a href="#使用-Maven-运行" class="headerlink" title="使用 Maven 运行"></a>使用 Maven 运行</h2><p>使用项目包装的 Maven <code>./mvnw</code> (on Mac OS X/Linux) of <code>mvnw</code> (on Windows)<br>使用本地已安装的 Maven <code>mvn</code>，更多的 Maven 使用信息请移步<a href="">http://maven.apache.org/</a><br>将会执行默认 Maven 任务, <code>spring-boot:run</code></p>
-<h2 id="使用-Gradle-运行"><a href="#使用-Gradle-运行" class="headerlink" title="使用 Gradle 运行"></a>使用 Gradle 运行</h2><p>使用项目包装的 Gradle <code>./gradlew</code> (on Mac OS X/Linux) of <code>gradlew</code> (on Windows)<br>使用本地已安装的 Gradle <code>gradle</code>，更多的 Gradle 使用信息请移步 <a href="">https://gradle.org/</a><br>将会执行默认 Gradle 任务, <code>bootRun</code></p>
-<h1 id="使用-Angular"><a href="#使用-Angular" class="headerlink" title="使用 Angular"></a>使用 Angular</h1><h2 id="运行-Webpack"><a href="#运行-Webpack" class="headerlink" title="运行 Webpack"></a>运行 Webpack</h2><p>只需要运行<code>yarn start</code>或<code>npm start</code></p>
-<p>这样运行有非常美妙的功能：</p>
-<ul>
-<li>一旦修改了 HTML / CSS / TypeScript 文件，浏览器就会自动刷新</li>
-<li>当您在几个不同的浏览器或设备上测试应用程序时，所有点击、滚动和输入都会在所有屏幕上自动同步</li>
-</ul>
-<p>这将会启动:</p>
-<ul>
-<li>Webpack 自动将 TypeScript 代码编译成 JavaScript 的任务</li>
-<li>Webpack 模块热加载服务运行在 <a href="">http://localhost:9060/</a> (同时代理访问 <a href="">http://127.0.0.1:8080/api</a> Java 后端)</li>
-<li>BrowserSync 运行在 <a href="">http://localhost:9000/</a>，它有一个代理 <a href="">http://localhost:9060/</a>(Webpack 模块热加载服务)，并且它将同步用户的点击、滚动和输入。</li>
-<li>BrowserSync UI，它运行在 <a href="">http://localhost:3001/</a></li>
-</ul>
-<h2 id="运行-Yarn"><a href="#运行-Yarn" class="headerlink" title="运行 Yarn"></a>运行 Yarn</h2><p>项目直接依赖关系被配置到<code>package.json</code>中，但是传递依赖关系被定义在<code>yarn.lock</code>文件，它在运行<code>yarn install</code>时生成。</p>
-<p>建议将<code>yarn.lock</code>放到源代码版本控制中，以便项目组的所有团队成员的所有依赖关系都具有相同的版本。<br>再次运行<code>yarn install</code>将重新生成具有最新版本的传递依赖关系的<code>yarn.lock</code>。</p>
-<h2 id="其他-Yarn-NPM-任务"><a href="#其他-Yarn-NPM-任务" class="headerlink" title="其他 Yarn / NPM 任务"></a>其他 Yarn / NPM 任务</h2><p>无论您使用 Yarn 还是 NPM，都可以使用 <code>yarn</code> 命令作为示例，但可以用 <code>npm</code> 替换它们。</p>
-<ul>
-<li><code>yarn lint</code>: 检查 TypeScript 代码风格问题</li>
-<li><code>yarn lint:fix</code>: 尝试自动纠正 TypeScript lint 风格问题</li>
-<li><code>yarn tsc</code>: 编译 TypeScript 代码</li>
-<li><code>yarn test</code>: 使用 Karma 运行单元测试</li>
-<li><code>yarn test:watch</code>: 保持 karma 单元测试运行, 代码更改时实时反馈</li>
-<li><code>yarn e2e</code>: 使用 Protractor 运行“端到端”测试（仅在生成项目时选择了 Protractor 选项时才有效）</li>
-</ul>
-<h1 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h1><h2 id="运行数据库"><a href="#运行数据库" class="headerlink" title="运行数据库"></a>运行数据库</h2><p>使用像 MySQL, MariaDB, PostgreSQL, MSSQL, MongoDB 或 Cassandra 等非嵌入式数据库时，需要自己安装和配置。</p>
-<p>JHipster 推荐的最简单的方法是使用 Docker Compose。 <a href="https://jhipster.github.io/docker-compose/" target="_blank" rel="external">参考 Docker 撰写指南</a>。</p>
-<p>如果您希望手动安装和配置数据库，请不要忘记在<code>src/main/resources/config/application-*.yml</code>文件（例如数据库URL，登录名和密码）中配置 Spring Boot 属性。</p>
-<h2 id="在开发中使用-H2-数据库"><a href="#在开发中使用-H2-数据库" class="headerlink" title="在开发中使用 H2 数据库"></a>在开发中使用 H2 数据库</h2><p>如果选择 H2 数据库，则应用程序中将运行内存中的数据库，默认情况下，您可以通过地址<a href="">http://localhost:8080/h2-console</a>访问控制台。</p>
-<p>要连接到数据库，请选择预配置的选项：</p>
-<ul>
-<li>Driver Class: org.h2.Driver</li>
-<li>JDBC URL: jdbc:h2:mem:jhipster</li>
-<li>User name:</li>
-<li>Password:</li>
-</ul>
-<h2 id="在开发中使用-MySQL-MariaDB-或-PostgreSQL"><a href="#在开发中使用-MySQL-MariaDB-或-PostgreSQL" class="headerlink" title="在开发中使用 MySQL, MariaDB 或 PostgreSQL"></a>在开发中使用 MySQL, MariaDB 或 PostgreSQL</h2><p>此选项比使用 H2 更复杂，但有一些重要的好处：</p>
-<ul>
-<li>数据在应用程序重新启动时保持不变</li>
-<li>应用程序启动的更快一点</li>
-<li>可以使用强大的 <code>./mvnw liquibase：diff</code>目标（见下文）</li>
-</ul>
-<h2 id="数据库更新"><a href="#数据库更新" class="headerlink" title="数据库更新"></a>数据库更新</h2><p>如果增加或修改了 JPA entity，将需要更新数据库。</p>
-<p>JHipster使用<a href="http://www.liquibase.org/" target="_blank" rel="external"><code>Liquibase</code></a>来管理数据库更新，并将其配置存储在<code>/src/main/resources/config/liquibase/</code>目录中。 使用 Liquibase 有3种方法：使用实体子生成器(entity sub-generator)，使用 liquibase：diff Maven目标，或手动更新配置文件。</p>
-<h3 id="使用-Maven-liquibase-diff-更新数据库"><a href="#使用-Maven-liquibase-diff-更新数据库" class="headerlink" title="使用 Maven liquibase:diff 更新数据库"></a>使用 Maven liquibase:diff 更新数据库</h3><p>如果选择在开发中使用 MySQL，MariaDB 或 PostgreSQL，则可以使用 <code>./mvnw liquibase:diff</code>目标自动生成 changelog。</p>
-<p>如果您使用基于磁盘的持久性运行 H2，这个尚不能完美工作，但您可以开始尝试使用它（并向官方发送反馈！）。</p>
-<p><a href="https://github.com/liquibase/liquibase-hibernate" target="_blank" rel="external">Liquibase Hibernate</a> 是一个在 Maven pom.xml 中配置的插件，与 Spring application.yml 文件无关，因此如果更改了默认设置（例如，更改了数据库密码），则需要修改这两个文件。</p>
-<p>这是开发工作流程：</p>
-<ul>
-<li>修改 JPA entity (增加字段 [field], 关系 [relationship], 等。)</li>
-<li>编译应用 (编译 Java 代码)</li>
-<li>运行 <code>./mvnw liquibase:diff</code> (或 <code>./mvnw compile liquibase:diff</code>)</li>
-<li>新的 “change log” 被创建在 <code>src/main/resources/config/liquibase/changelog</code> 文件夹</li>
-<li>查看此 “change log” 并将其添加到您的 <code>src/main/resources/config/liquibase/master.xml</code> 文件, 在下次运行应用程序时应用它</li>
-</ul>
-<p>如果您使用 Gradle 而不是 Maven，则可以通过运行 <code>./gradlew liquibaseDiffChangelog</code>来使用相同的工作流程，如果需要，可以更改<code>liquibase.gradle</code>中的数据库配置。</p>
-<h3 id="手工修改-change-log-更新数据库"><a href="#手工修改-change-log-更新数据库" class="headerlink" title="手工修改 change log 更新数据库"></a>手工修改 change log 更新数据库</h3><p>如果您喜欢（或需要）手动进行数据库更新，则以下是开发工作流程：</p>
-<ul>
-<li>修改 JPA entity (增加字段 [field], 关系 [relationship], 等。)</li>
-<li>创建新的 “change log” 在<code>src/main/resources/config/liquibase/changelog</code> 文件夹。该目录中的文件以其创建日期（以 yyyyMMddHHmmss 格式）为前缀，然后具有描述其作用的标题。 例如，<code>20141006152300_added_price_to_product.xml</code>是一个好名字。</li>
-<li>添加 “change log” 文件到 <code>src/main/resources/config/liquibase/master.xml</code> 文件, 在下次运行应用程序时应用它</li>
-</ul>
-<p>如果想了解更多的 Liquibase 使用信息，请移步<a href="">http://www.liquibase.org</a>。</p>
-<h2 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h2><p>国际化（或i18n）是 JHipster 的一等公民，我们相信应该在项目开始时设置（而不是事后的想法）。</p>
-<p>用法真的很简单：</p>
-<ul>
-<li>使用 AngularJS 1，感谢 <a href="https://github.com/PascalPrecht/angular-translate" target="_blank" rel="external">Angular Translate</a>，它为 i18n 提供了一个简单的 AngularJS 指令</li>
-<li>使用 AngularJS 2+，感谢 <a href="https://github.com/ocombe/ng2-translate" target="_blank" rel="external">NG2 translate</a> 和一个特定的 JHipster 组件，它与 Angular Translate 相同，并使用相同的文件</li>
-</ul>
-<p>例如，要将翻译添加到“first name”字段中，只需添加一个“translate”属性和一个键：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">translate</span>=<span class="string">"settings.form.firstname"</span>&gt;</span>First Name<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>此键引用一个 JSON 文档，它将返回已翻译的字符串。 然后 Angular 将用翻译的版本替换 “First Name” 字符串。</p>
-<p>如果您需要有关使用语言的更多信息，请阅读官方的<a href="https://jhipster.github.io/installing-new-languages/" target="_blank" rel="external">安装新语言文档</a>。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2657,7 +2620,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
