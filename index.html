@@ -296,6 +296,193 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/28/Githug-Git-应用场景训练/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/28/Githug-Git-应用场景训练/" itemprop="url">Githug - Git 应用场景训练</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-28T11:25:37+08:00">
+                2017-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/28/Githug-Git-应用场景训练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/28/Githug-Git-应用场景训练/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/28/Githug-Git-应用场景训练/" class="leancloud_visitors" data-flag-title="Githug - Git 应用场景训练">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近发现一个挺好玩的 Git 场景训练项目 <a href="https://github.com/Gazler/githug" target="_blank" rel="external">githug</a>，体验一下，感觉还不错，收藏起来，给小兄弟姐妹们训练使用。</p>
+<ul>
+<li>使用 docker 的 ruby 镜像手工搭建环境</li>
+<li>使用 docker 的 ruby 镜像 build 一个 githug 镜像</li>
+</ul>
+<h1 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h1><p>仅限使用 docker 的方式。如果是在本地安装跳过 docker 相关的操作。</p>
+<ul>
+<li>安装 docker</li>
+<li>下载 ruby 镜像<code>docker pull ruby</code></li>
+</ul>
+<h1 id="纯手工搭建环境"><a href="#纯手工搭建环境" class="headerlink" title="纯手工搭建环境"></a>纯手工搭建环境</h1><h2 id="运行-ruby-镜像"><a href="#运行-ruby-镜像" class="headerlink" title="运行 ruby 镜像"></a>运行 ruby 镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name githug -it ruby /bin/sh</div></pre></td></tr></table></figure>
+<h2 id="安装-githug"><a href="#安装-githug" class="headerlink" title="安装 githug"></a>安装 githug</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install githug</div></pre></td></tr></table></figure>
+<h2 id="安装-vim"><a href="#安装-vim" class="headerlink" title="安装 vim"></a>安装 vim</h2><p>因为 docker 的 ruby 镜像中不包含编辑器，故自己安装一个，方便训练时使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get update</div><div class="line">apt-get install vim -y</div></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>至此，githug 已经可以使用。看看<code>githug help</code>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tasks:</div><div class="line">  githug help [TASK]  # Describe available tasks or one specific task</div><div class="line">  githug hint         # Get a hint for the current level</div><div class="line">  githug levels       # List all of the levels</div><div class="line">  githug play         # Initialize the game</div><div class="line">  githug reset        # Reset the current level</div><div class="line">  githug test         # Test a level from a file path</div></pre></td></tr></table></figure>
+<h1 id="编译-githug-的-docker-镜像"><a href="#编译-githug-的-docker-镜像" class="headerlink" title="编译 githug 的 docker 镜像"></a>编译 githug 的 docker 镜像</h1><p>为了方便兄弟姐妹们复用训练环境，编译一个已经配置好的 docker 镜像，是一个很好的方式。</p>
+<p><a href="https://github.com/Jefferlau/githug-docker" target="_blank" rel="external">详细说明</a></p>
+<h2 id="编写-Dockerfile-文件"><a href="#编写-Dockerfile-文件" class="headerlink" title="编写 Dockerfile 文件"></a>编写 Dockerfile 文件</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> ruby:latest</div><div class="line"></div><div class="line"><span class="keyword">MAINTAINER</span> Jeffer Lau <span class="string">"jefferlzu@gmail.com"</span></div><div class="line"></div><div class="line"><span class="comment"># Update aptitude with new repo</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update</span></div><div class="line"></div><div class="line"><span class="comment"># Install vim</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> apt-get install -y vim --force-yes</span></div><div class="line"></div><div class="line"><span class="comment"># Install githug</span></div><div class="line"><span class="keyword">RUN</span><span class="bash"> gem install githug</span></div></pre></td></tr></table></figure>
+<h2 id="编译-Docker-镜像"><a href="#编译-Docker-镜像" class="headerlink" title="编译 Docker 镜像"></a>编译 Docker 镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t jefferlau/githug .</div></pre></td></tr></table></figure>
+<h2 id="推送到-Docker-Hub-存储"><a href="#推送到-Docker-Hub-存储" class="headerlink" title="推送到 Docker Hub 存储"></a>推送到 Docker Hub 存储</h2><p><a href="">https://docs.docker.com/docker-cloud/builds/push-images/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># tag lastest</span></div><div class="line">docker tag githug jefferlau/githug</div><div class="line">docker push jefferlau/githug</div><div class="line"><span class="comment"># tag githug version 0.5.0</span></div><div class="line">docker tag githug jefferlau/githug:0.5.0</div><div class="line">docker push jefferlau/githug:0.5.0</div></pre></td></tr></table></figure>
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull jefferlau/githug</div></pre></td></tr></table></figure>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>初次运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name githug -it jefferlau/githug /bin/bash</div></pre></td></tr></table></figure>
+<p>再次运行时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动容器</span></div><div class="line">docker start githug</div><div class="line"><span class="comment"># 连接容器命令行</span></div><div class="line">docker <span class="built_in">exec</span> -it githug /bin/bash</div><div class="line"><span class="comment"># 停止容器</span></div><div class="line">docker stop githug</div></pre></td></tr></table></figure>
+<p>然后<code>githug help</code>可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Tasks:</div><div class="line">  githug help [TASK]  # Describe available tasks or one specific task</div><div class="line">  githug hint         # Get a hint for the current level</div><div class="line">  githug levels       # List all of the levels</div><div class="line">  githug play         # Initialize the game</div><div class="line">  githug reset        # Reset the current level</div><div class="line">  githug test         # Test a level from a file path</div></pre></td></tr></table></figure>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>至此 githug 的 docker 镜像制作和分享已经完成。</p>
+<p>更多的 <a href="https://github.com/Gazler/githug" target="_blank" rel="external">githug 使用帮助</a></p>
+<p><a href="https://segmentfault.com/a/1190000004222489" target="_blank" rel="external">githug 中文攻略</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/15/JHipster-学习笔记-12-项目实战-单体应用-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2297,216 +2484,11 @@ table th:first-of-type {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/12/JHipster-学习笔记-3-管理-Profiles/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeffer Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="谦和斋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/JHipster-学习笔记-3-管理-Profiles/" itemprop="url">JHipster 学习笔记(三) - 管理 Profiles</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T16:18:41+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JHipster/" itemprop="url" rel="index">
-                    <span itemprop="name">JHipster</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/JHipster-学习笔记-3-管理-Profiles/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/12/JHipster-学习笔记-3-管理-Profiles/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/12/JHipster-学习笔记-3-管理-Profiles/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(三) - 管理 Profiles">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://jhipster.github.io/profiles/" target="_blank" rel="external">来自官网</a></p>
-<h1 id="Profiles"><a href="#Profiles" class="headerlink" title="Profiles"></a>Profiles</h1><p>JHipster 提供两种 Spring profiles :</p>
-<ul>
-<li><code>dev</code> for development: 它侧重于易于开发和生产力</li>
-<li><code>prod</code> for production: 它侧重于性能和可扩展性</li>
-</ul>
-<p>这些配置文件有两种不同的配置：</p>
-<ul>
-<li>Maven / Gradle 配置文件在构建时使用。 例如<code>./mvnw -Pprod package</code>或<code>./gradlew bootRepackage -Pprod</code>将打包生产环境应用程序。</li>
-<li>Spring 配置文件在运行时工作。一些 Spring beans 依赖不同配置文件其行为会有所不同。</li>
-</ul>
-<p>Spring profiles 由 Maven / Gradle 设置，所以我们在两种方法之间保持一致：您将在 Maven / Gradle 和 Spring 同时拥有一个 <code>prod</code> profile。</p>
-<p>注意：Spring profiles 文件用于配置 JHipster 应用程序属性，因此您应该有兴趣阅读 <a href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" title="应用程序属性文件">应用程序属性文件</a>。</p>
-<h2 id="JHipster-默认使用-dev-profile"><a href="#JHipster-默认使用-dev-profile" class="headerlink" title="JHipster 默认使用 dev profile"></a>JHipster 默认使用 dev profile</h2><p>如果您在没有 Maven / Gradle 的情况下运行应用程序，请启动 “Application” 类（您可以通过右键单击从IDE轻松运行）。</p>
-<p>如果使用 Maven 运行应用程序，请运行<code>./mvnw</code>以使用 Maven 包装，或者使用<code>mvn</code>来使用自己安装的 Maven。</p>
-<p>如果您使用 Gradle 运行应用程序，请运行<code>./gradlew</code>以使用我们的 Gradle 包装，或者使用<code>gradle</code>来使用自己安装的Gradle。</p>
-<p>当使用 Angular 2+ 时，如果需要执行干净的运行，使用 webpack 编译启用 <code>dev</code> profile 配置文件，您可以传递 <code>webpack</code> 参数如下</p>
-<p><code>./mvnw -Pdev,webpack</code> 或 <code>./gradlew -Pdev -Pwebpack</code></p>
-<h2 id="在生产环境-JHipster-运行-prod-profile"><a href="#在生产环境-JHipster-运行-prod-profile" class="headerlink" title="在生产环境 JHipster 运行 prod profile"></a>在生产环境 JHipster 运行 prod profile</h2><p>在生产环境可以直接使用 Maven 或 Gradle 运行 JHipster：</p>
-<ul>
-<li>Maven, 运行 .<code>/mvnw -Pprod</code> (或 <code>mvn -Pprod</code>)</li>
-<li>Gradle, 运行 <code>./gradlew -Pprod</code> (或 <code>gradle -Pprod</code>)</li>
-</ul>
-<p>如果想将应用打包成可执行 WAR 文件，只需要给 Maven 或 Gradle 一个 profile，例如：</p>
-<ul>
-<li>Maven, run <code>./mvnw -Pprod package</code> (或 <code>mvn -Pprod package</code>)</li>
-<li>Gradle, run <code>./gradlew -Pprod bootRepackage</code> (或 <code>gradle -Pprod bootRepackage</code>)</li>
-</ul>
-<p>当使用 WAR 文件运行生产环境应用时，默认使用和打包时相同的 profile(s)。如果想覆盖这个配置，可以在 VM 参数中显式提供一种替代方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=...</div></pre></td></tr></table></figure></p>
-<h2 id="Spring-profiles-开关"><a href="#Spring-profiles-开关" class="headerlink" title="Spring profiles 开关"></a>Spring profiles 开关</h2><p>JHipster 带有三个额外的配置文件用作开关：</p>
-<ul>
-<li><code>swagger</code> 开启 swagger</li>
-<li><code>no-liquibase</code> 关闭 liquibase</li>
-</ul>
-<p>这些可以与 <code>dev</code> 和 <code>prod</code> 配置文件一起使用。 请注意在默认情况下，在 <code>application.yml</code> 中设置 <code>spring.profiles.include</code> 属性，使<code>swagger</code>在 <code>prod</code> 中禁用并且在 <code>dev</code> 中启用。</p>
-<p><code>swagger</code> 和 <code>no-liquibase</code> 仅用在运行时:</p>
-<ul>
-<li>在 IDE 中，使用 <code>spring.profiles.active=dev,no-liquibase</code>运行主应用程序类（请注意，需要显式地包含 <code>dev</code> 或 <code>prod</code> 配置文件）</li>
-<li>使用打包应用程序：<code>./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod,no-liquibase</code></li>
-</ul>
-<p>使用 Maven，也可以直接使用这些配置文件：</p>
-<ul>
-<li><code>./mvnw -Pprod,swagger,no-liquibase</code></li>
-<li><code>./mvnw -Pdev,no-liquibase</code></li>
-</ul>
-<p>使用 Gradle, 也可以直接使用这些配置文件：</p>
-<ul>
-<li><code>./gradlew -Pprod -Pswagger -Pno-liquibase</code></li>
-<li><code>./gradlew -Pno-liquibase</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2551,7 +2533,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
