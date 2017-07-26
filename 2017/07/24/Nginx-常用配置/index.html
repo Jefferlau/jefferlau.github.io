@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JDBC,Spring JdbcTemplate,坑," />
+  <meta name="keywords" content="Nginx," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="对于一个长期使用ORM的人来说，这就是绝世好坑，必须记录下来。123public &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; queryForList(String sql, Object[] args, Class&amp;lt;T&amp;gt; elementType) throws DataAccessException &amp;#123;    // ...&amp;#125; 先从这个方法签名来看，设想自定义个">
-<meta name="keywords" content="JDBC,Spring JdbcTemplate,坑">
+<meta name="description" content="前言   本文重点在于演示示例，纯干货，想了解更多信息，请查阅官方文档 或 Nginx 中文官方文档 实验环境推荐安装Git和Docker  Nginx 安装使用 Docker Nginx 镜像 拉取 Nginx 的镜像 docker pull nginx:stable 拉取 Nginx 配置文件夹 git clone git@github.com:Jefferlau/nginx-config-d">
+<meta name="keywords" content="Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑">
-<meta property="og:url" content="http://jefferlau.me/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/index.html">
+<meta property="og:title" content="Nginx 常用配置">
+<meta property="og:url" content="http://jefferlau.me/2017/07/24/Nginx-常用配置/index.html">
 <meta property="og:site_name" content="谦和斋">
-<meta property="og:description" content="对于一个长期使用ORM的人来说，这就是绝世好坑，必须记录下来。123public &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; queryForList(String sql, Object[] args, Class&amp;lt;T&amp;gt; elementType) throws DataAccessException &amp;#123;    // ...&amp;#125; 先从这个方法签名来看，设想自定义个">
-<meta property="og:updated_time" content="2017-02-09T10:00:49.000Z">
+<meta property="og:description" content="前言   本文重点在于演示示例，纯干货，想了解更多信息，请查阅官方文档 或 Nginx 中文官方文档 实验环境推荐安装Git和Docker  Nginx 安装使用 Docker Nginx 镜像 拉取 Nginx 的镜像 docker pull nginx:stable 拉取 Nginx 配置文件夹 git clone git@github.com:Jefferlau/nginx-config-d">
+<meta property="og:updated_time" content="2017-07-26T03:25:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑">
-<meta name="twitter:description" content="对于一个长期使用ORM的人来说，这就是绝世好坑，必须记录下来。123public &amp;lt;T&amp;gt; List&amp;lt;T&amp;gt; queryForList(String sql, Object[] args, Class&amp;lt;T&amp;gt; elementType) throws DataAccessException &amp;#123;    // ...&amp;#125; 先从这个方法签名来看，设想自定义个">
+<meta name="twitter:title" content="Nginx 常用配置">
+<meta name="twitter:description" content="前言   本文重点在于演示示例，纯干货，想了解更多信息，请查阅官方文档 或 Nginx 中文官方文档 实验环境推荐安装Git和Docker  Nginx 安装使用 Docker Nginx 镜像 拉取 Nginx 的镜像 docker pull nginx:stable 拉取 Nginx 配置文件夹 git clone git@github.com:Jefferlau/nginx-config-d">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://jefferlau.me/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/"/>
+  <link rel="canonical" href="http://jefferlau.me/2017/07/24/Nginx-常用配置/"/>
 
 
 
 
 
-  <title>Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑 | 谦和斋</title>
+  <title>Nginx 常用配置 | 谦和斋</title>
   
 
 
@@ -296,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/07/24/Nginx-常用配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeffer Lau">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑</h1>
+          <h1 class="post-title" itemprop="name headline">Nginx 常用配置</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-26T14:58:34+08:00">
-                2016-07-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T14:06:55+08:00">
+                2017-07-24
               </time>
             
 
@@ -348,19 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/数据持久层/" itemprop="url" rel="index">
-                    <span itemprop="name">数据持久层</span>
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
                   </a>
                 </span>
 
@@ -377,9 +366,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/24/Nginx-常用配置/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/24/Nginx-常用配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,7 +376,7 @@
 
           
           
-             <span id="/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/" class="leancloud_visitors" data-flag-title="Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑">
+             <span id="/2017/07/24/Nginx-常用配置/" class="leancloud_visitors" data-flag-title="Nginx 常用配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -415,17 +404,63 @@
       
 
       
-        <p>对于一个长期使用ORM的人来说，这就是绝世好坑，必须记录下来。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">queryForList</span><span class="params">(String sql, Object[] args, Class&lt;T&gt; elementType)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>先从这个方法签名来看，设想自定义个类传进去，就得到了 List<t>，多么丰满易用啊～！</t></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;T&gt; list = jdbcTemplate.query(sql, args, entityClazz);</div></pre></td></tr></table></figure>
-<p>可现实是非常骨感的，真正调用时发现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.springframework.jdbc.IncorrectResultSetColumnCountException: Incorrect column count: expected 1,     actual 3</div></pre></td></tr></table></figure>
-<p>Why？带着疑问去看看原代码发现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">queryForList</span><span class="params">(String sql, Object[] args, Class&lt;T&gt; elementType)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.query(sql, args, <span class="keyword">this</span>.getSingleColumnRowMapper(elementType));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>getSingleColumnRowMapper？？？elementType可以传int.class,String.class。好吧，认了，但是问题还是要解决的，继续翻看代码，找适合自己的吧！最终找到这么一段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">query</span><span class="params">(String sql, Object[] args, RowMapper&lt;T&gt; rowMapper)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</div><div class="line">    <span class="keyword">return</span> (List)<span class="keyword">this</span>.query((String)sql, (Object[])args, (ResultSetExtractor)(<span class="keyword">new</span> RowMapperResultSetExtractor(rowMapper)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>哈，这就是想要的了，调用也不算麻烦，可是咱真的不能从方法签名上给个明显提示？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;T&gt; list = jdbcTemplate.query(sql, args, <span class="keyword">new</span> BeanPropertyRowMapper&lt;T&gt;(entityClazz));</div></pre></td></tr></table></figure>
+        <p><em>前言</em> </p>
+<ul>
+<li>本文重点在于演示示例，纯干货，想了解更多信息，请查阅<a href="https://nginx.org/en/docs/" target="_blank" rel="external">官方文档</a> 或 <a href="https://wizardforcel.gitbooks.io/nginx-doc/content/" target="_blank" rel="external">Nginx 中文官方文档</a></li>
+<li>实验环境推荐安装<code>Git</code>和<code>Docker</code></li>
+</ul>
+<h1 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h1><h2 id="使用-Docker-Nginx-镜像"><a href="#使用-Docker-Nginx-镜像" class="headerlink" title="使用 Docker Nginx 镜像"></a>使用 Docker Nginx 镜像</h2><ol>
+<li>拉取 Nginx 的镜像 <code>docker pull nginx:stable</code></li>
+<li>拉取 Nginx 配置文件夹 <code>git clone git@github.com:Jefferlau/nginx-config-docker.git</code></li>
+<li>切换配置到初始安装状态<code>cd nginx-config-docker &amp;&amp; git checkout v1.1 &amp;&amp; cd ..</code></li>
+<li>运行 <code>docker run -p 1080:80 --name nginx -v $PWD/nginx-config-docker:/etc/nginx -d nginx:stable</code> 即可启动 Nginx 容器</li>
+</ol>
+<p>使用浏览器访问 <a href="">http://localhost:1080/</a> 即可看到 Nginx 的欢迎页面。</p>
+<h2 id="Docker-容器下演示-CentOS-安装-Nginx"><a href="#Docker-容器下演示-CentOS-安装-Nginx" class="headerlink" title="Docker 容器下演示 CentOS 安装 Nginx"></a>Docker 容器下演示 CentOS 安装 Nginx</h2><ol>
+<li>拉取 CentOS 镜像 <code>docker pull centos</code></li>
+<li>拉取 Nginx 配置文件夹 <code>git clone git@github.com:Jefferlau/nginx-config-docker.git</code></li>
+<li>创建容器并映射端口 <code>docker run -it -p 1080:80 --name nginx -v $PWD/nginx-config-docker:/etc/nginx -d centos /bin/bash</code></li>
+<li>连接容器命令行<code>docker exec -it nginx /bin/bash</code></li>
+<li>安装 Nginx<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tee /etc/yum.repos.d/nginx.repo &lt;&lt;-<span class="string">'EOF'</span></div><div class="line">[nginx]</div><div class="line">name=nginx repo</div><div class="line">baseurl=http://nginx.org/packages/centos/7/<span class="variable">$basearch</span>/</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div><div class="line">EOF</div><div class="line"></div><div class="line">yum install -y nginx</div><div class="line"><span class="comment"># nginx.x86_64 1:1.12.1-1.el7.ngx</span></div><div class="line">nginx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用浏览器访问 <a href="">http://localhost:1080/</a> 即可看到 Nginx 的欢迎页面。</p>
+<h1 id="反向代理配置"><a href="#反向代理配置" class="headerlink" title="反向代理配置"></a>反向代理配置</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>打开 nginx.conf 文件，在 http 节点，添加 upstream</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    #ip_hash;</div><div class="line">    server 192.168.15.213:8080;</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 hosts 文件增加域名解析<code>sudo sh -c &quot;echo 127.0.0.1 dist.com &gt;&gt; /etc/hosts&quot;</code>;</p>
+<p>在 conf.d 文件夹创建 dist.conf 文件<code>cp conf.d/default.conf conf.d/dist.conf</code>，修改 dist.conf 文件内容，<code>vim conf.d/dist.conf</code>，将 server_name 改成 <code>dist.com</code>，location 节点改成如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    proxy_redirect     off;</div><div class="line">    proxy_pass http://dist_servers/;</div><div class="line">    #proxy_pass http://dist_servers/dist/;</div><div class="line">    index index.html index.jsp;</div><div class="line"></div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">    proxy_set_header X-Forwarded-Proto http;</div><div class="line">    proxy_set_header X-Forwarded-Port 80;</div><div class="line"></div><div class="line">    #large_client_header_buffers 4 16k;</div><div class="line">    client_max_body_size   10m;</div><div class="line">    client_body_buffer_size  128k;</div><div class="line">    proxy_connect_timeout  100;</div><div class="line">    proxy_send_timeout   100;</div><div class="line">    proxy_read_timeout 300;</div><div class="line">    proxy_buffer_size 4k;</div><div class="line">    proxy_buffers  4 32k;</div><div class="line">    proxy_busy_buffers_size 64k;</div><div class="line">    proxy_temp_file_write_size  64k;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v2.1</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<p>然后打开浏览器访问<a href="">http://dist.com:1080/</a>，即可看到和直接访问 <a href="">192.168.15.213:8080</a> 或 <a href="">192.168.15.214:8080</a> 相同的内容。</p>
+<p><em>注</em> proxy 参数含义详见<a href="https://wizardforcel.gitbooks.io/nginx-doc/content/Text/3.20_httpproxy.html" target="_blank" rel="external">HttpProxy模块</a></p>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><h3 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h3><p>安装 EPEL 的软件包 <code>yum install -y epel-release &amp;&amp; yum upgrade</code></p>
+<p>安装 PHP yum 源 <code>rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</code></p>
+<p>然后安装 PHP<code>yum install -y php70w php70w-fpm</code>(根据需要安装 PHP 扩展包，这里仅演示简单 PHP 页面)</p>
+<p>启动 PHP fpm<code>php-fpm</code></p>
+<p>在 hosts 文件增加域名解析<code>sudo sh -c &quot;echo 127.0.0.1 dist-php.com &gt;&gt; /etc/hosts&quot;</code>;</p>
+<p>在 conf.d 文件夹创建 dist-php.conf 文件<code>cp conf.d/default.conf conf.d/dist-php.conf</code>，修改 dist-php.conf 文件内容，<code>vim conf.d/dist-php.conf</code>，将 server_name 改成 <code>dist-php.com</code>，location 节点改成如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    root   /usr/share/nginx/html;</div><div class="line">    index  index.html index.htm index.php;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v2.2</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tee /usr/share/nginx/html/phpinfo.php &lt;&lt;-<span class="string">'EOF'</span></div><div class="line">&lt;?php  </div><div class="line">phpinfo();</div><div class="line">?&gt;</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>然后打开浏览器访问<a href="">http://dist-php.com:1080/phpinfo.php</a>，即可看到 phpinfo 页面的内容。</p>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>Nginx 提供了以下三种负载均衡机制：</p>
+<ol>
+<li>round-robin — （默认）请求以轮询的方式分发到应用服务器，如果后端服务器 down 掉，能自动剔除。<br> weight 指定轮询几率，weight 和访问比率成正比，用于后端服务器性能不均的情况。 </li>
+<li>least-connected — 下一个请求被分配到拥有最少活动连接数的服务器</li>
+<li>ip-hash — 使用一个哈希函数，基于客户端 IP 地址判断请求应该被分发到哪个服务器,这样每个访客固定访问一个后端服务器，可以解决 session 的问题。</li>
+</ol>
+<p>在之前配置 Java 反向代理的时候 nginx.conf 里 upstream 就是用来定义被 Nginx 代理的服务器组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    server 192.168.15.213:8080 weight=3;</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认情况下，使用轮询机制，如果设置了权重，将会按照将会按照权重来分配响应的服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    least_conn;</div><div class="line">    server 192.168.15.213:8080</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置了 least-connected 的负载均衡机制的情况下，Nginx<br>会把新的请求发送到比较不繁忙的服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    ip_hash;</div><div class="line">    server 192.168.15.213:8080</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ip_hash 机制下客户端 IP 地址被用作 hash key 来判断客户端请求应该发送到哪个服务器，这种方法保证了来自相同客户端的请求总是发送到相同服务器（如果服务器可用的话）</p>
+<p>如果有必要把客户端绑定至特定服务器，则可使用ip-hash负载均衡机制。</p>
+<h1 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h1><p>修改 conf.d 文件夹创建 dist.conf 文件<code>vim conf.d/dist.conf</code>，在 location / 节点上方添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^/(.*)/index\.html$ /index?name=$1 last;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v4.1</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<p>分别访问 <a href="">http://dist.com:1080/java/index.html</a> 和 <a href="">http://dist.com:1080/index?name=Java</a> 可以看到，输出的是相同的内容。</p>
+<p>用这种转发的方式就可以实现网站的 <em>伪静态</em>。</p>
+<p>rewrite 行尾的参数详见 <a href="https://wizardforcel.gitbooks.io/nginx-doc/content/Text/3.21_rewrite.html" target="_blank" rel="external">HttpRewrite 模块</a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>演示中使用的 Java web 项目见 <a href="https://github.com/Jefferlau/spring-boot-example" target="_blank" rel="external">spring-boot-example</a></p>
 
       
     </div>
@@ -476,11 +511,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JDBC/" rel="tag"># JDBC</a>
-          
-            <a href="/tags/Spring-JdbcTemplate/" rel="tag"># Spring JdbcTemplate</a>
-          
-            <a href="/tags/坑/" rel="tag"># 坑</a>
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
           
         </div>
       
@@ -493,18 +524,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/" rel="next" title="Mybatis Generator 配置详解[含表字段注释及@Mapper注解]">
-                <i class="fa fa-chevron-left"></i> Mybatis Generator 配置详解[含表字段注释及@Mapper注解]
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/13/Maven打包Spring项目、复制或重命名文件及filter的一点心得/" rel="prev" title="Maven打包Spring项目、复制或重命名文件及filter的一点心得">
-                Maven打包Spring项目、复制或重命名文件及filter的一点心得 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/28/Githug-Git-应用场景训练/" rel="prev" title="Githug - Git 应用场景训练">
+                Githug - Git 应用场景训练 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -597,8 +624,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -690,6 +726,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx-安装"><span class="nav-number">1.</span> <span class="nav-text">Nginx 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Docker-Nginx-镜像"><span class="nav-number">1.1.</span> <span class="nav-text">使用 Docker Nginx 镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-容器下演示-CentOS-安装-Nginx"><span class="nav-number">1.2.</span> <span class="nav-text">Docker 容器下演示 CentOS 安装 Nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向代理配置"><span class="nav-number">2.</span> <span class="nav-text">反向代理配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java"><span class="nav-number">2.1.</span> <span class="nav-text">Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP"><span class="nav-number">2.2.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-PHP"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装 PHP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#负载均衡"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转发"><span class="nav-number">4.</span> <span class="nav-text">转发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -834,9 +886,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://jefferlau.me/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/';
-          this.page.identifier = '2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/';
-          this.page.title = 'Spring JdbcTemplate queryForList(String sql, Object[] args, Class<T> elementType) 绝对是个好坑';
+          this.page.url = 'http://jefferlau.me/2017/07/24/Nginx-常用配置/';
+          this.page.identifier = '2017/07/24/Nginx-常用配置/';
+          this.page.title = 'Nginx 常用配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jefferlau.disqus.com/embed.js';

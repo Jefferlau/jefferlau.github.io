@@ -296,6 +296,218 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/07/24/Nginx-常用配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/24/Nginx-常用配置/" itemprop="url">Nginx 常用配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-24T14:06:55+08:00">
+                2017-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/24/Nginx-常用配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/24/Nginx-常用配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/24/Nginx-常用配置/" class="leancloud_visitors" data-flag-title="Nginx 常用配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>前言</em> </p>
+<ul>
+<li>本文重点在于演示示例，纯干货，想了解更多信息，请查阅<a href="https://nginx.org/en/docs/" target="_blank" rel="external">官方文档</a> 或 <a href="https://wizardforcel.gitbooks.io/nginx-doc/content/" target="_blank" rel="external">Nginx 中文官方文档</a></li>
+<li>实验环境推荐安装<code>Git</code>和<code>Docker</code></li>
+</ul>
+<h1 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h1><h2 id="使用-Docker-Nginx-镜像"><a href="#使用-Docker-Nginx-镜像" class="headerlink" title="使用 Docker Nginx 镜像"></a>使用 Docker Nginx 镜像</h2><ol>
+<li>拉取 Nginx 的镜像 <code>docker pull nginx:stable</code></li>
+<li>拉取 Nginx 配置文件夹 <code>git clone git@github.com:Jefferlau/nginx-config-docker.git</code></li>
+<li>切换配置到初始安装状态<code>cd nginx-config-docker &amp;&amp; git checkout v1.1 &amp;&amp; cd ..</code></li>
+<li>运行 <code>docker run -p 1080:80 --name nginx -v $PWD/nginx-config-docker:/etc/nginx -d nginx:stable</code> 即可启动 Nginx 容器</li>
+</ol>
+<p>使用浏览器访问 <a href="">http://localhost:1080/</a> 即可看到 Nginx 的欢迎页面。</p>
+<h2 id="Docker-容器下演示-CentOS-安装-Nginx"><a href="#Docker-容器下演示-CentOS-安装-Nginx" class="headerlink" title="Docker 容器下演示 CentOS 安装 Nginx"></a>Docker 容器下演示 CentOS 安装 Nginx</h2><ol>
+<li>拉取 CentOS 镜像 <code>docker pull centos</code></li>
+<li>拉取 Nginx 配置文件夹 <code>git clone git@github.com:Jefferlau/nginx-config-docker.git</code></li>
+<li>创建容器并映射端口 <code>docker run -it -p 1080:80 --name nginx -v $PWD/nginx-config-docker:/etc/nginx -d centos /bin/bash</code></li>
+<li>连接容器命令行<code>docker exec -it nginx /bin/bash</code></li>
+<li>安装 Nginx<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tee /etc/yum.repos.d/nginx.repo &lt;&lt;-<span class="string">'EOF'</span></div><div class="line">[nginx]</div><div class="line">name=nginx repo</div><div class="line">baseurl=http://nginx.org/packages/centos/7/<span class="variable">$basearch</span>/</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div><div class="line">EOF</div><div class="line"></div><div class="line">yum install -y nginx</div><div class="line"><span class="comment"># nginx.x86_64 1:1.12.1-1.el7.ngx</span></div><div class="line">nginx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用浏览器访问 <a href="">http://localhost:1080/</a> 即可看到 Nginx 的欢迎页面。</p>
+<h1 id="反向代理配置"><a href="#反向代理配置" class="headerlink" title="反向代理配置"></a>反向代理配置</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>打开 nginx.conf 文件，在 http 节点，添加 upstream</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    #ip_hash;</div><div class="line">    server 192.168.15.213:8080;</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 hosts 文件增加域名解析<code>sudo sh -c &quot;echo 127.0.0.1 dist.com &gt;&gt; /etc/hosts&quot;</code>;</p>
+<p>在 conf.d 文件夹创建 dist.conf 文件<code>cp conf.d/default.conf conf.d/dist.conf</code>，修改 dist.conf 文件内容，<code>vim conf.d/dist.conf</code>，将 server_name 改成 <code>dist.com</code>，location 节点改成如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    proxy_redirect     off;</div><div class="line">    proxy_pass http://dist_servers/;</div><div class="line">    #proxy_pass http://dist_servers/dist/;</div><div class="line">    index index.html index.jsp;</div><div class="line"></div><div class="line">    proxy_set_header Host $http_host;</div><div class="line">    proxy_set_header X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">    proxy_set_header X-Forwarded-Proto http;</div><div class="line">    proxy_set_header X-Forwarded-Port 80;</div><div class="line"></div><div class="line">    #large_client_header_buffers 4 16k;</div><div class="line">    client_max_body_size   10m;</div><div class="line">    client_body_buffer_size  128k;</div><div class="line">    proxy_connect_timeout  100;</div><div class="line">    proxy_send_timeout   100;</div><div class="line">    proxy_read_timeout 300;</div><div class="line">    proxy_buffer_size 4k;</div><div class="line">    proxy_buffers  4 32k;</div><div class="line">    proxy_busy_buffers_size 64k;</div><div class="line">    proxy_temp_file_write_size  64k;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v2.1</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<p>然后打开浏览器访问<a href="">http://dist.com:1080/</a>，即可看到和直接访问 <a href="">192.168.15.213:8080</a> 或 <a href="">192.168.15.214:8080</a> 相同的内容。</p>
+<p><em>注</em> proxy 参数含义详见<a href="https://wizardforcel.gitbooks.io/nginx-doc/content/Text/3.20_httpproxy.html" target="_blank" rel="external">HttpProxy模块</a></p>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><h3 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h3><p>安装 EPEL 的软件包 <code>yum install -y epel-release &amp;&amp; yum upgrade</code></p>
+<p>安装 PHP yum 源 <code>rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</code></p>
+<p>然后安装 PHP<code>yum install -y php70w php70w-fpm</code>(根据需要安装 PHP 扩展包，这里仅演示简单 PHP 页面)</p>
+<p>启动 PHP fpm<code>php-fpm</code></p>
+<p>在 hosts 文件增加域名解析<code>sudo sh -c &quot;echo 127.0.0.1 dist-php.com &gt;&gt; /etc/hosts&quot;</code>;</p>
+<p>在 conf.d 文件夹创建 dist-php.conf 文件<code>cp conf.d/default.conf conf.d/dist-php.conf</code>，修改 dist-php.conf 文件内容，<code>vim conf.d/dist-php.conf</code>，将 server_name 改成 <code>dist-php.com</code>，location 节点改成如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    root   /usr/share/nginx/html;</div><div class="line">    index  index.html index.htm index.php;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v2.2</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tee /usr/share/nginx/html/phpinfo.php &lt;&lt;-<span class="string">'EOF'</span></div><div class="line">&lt;?php  </div><div class="line">phpinfo();</div><div class="line">?&gt;</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>然后打开浏览器访问<a href="">http://dist-php.com:1080/phpinfo.php</a>，即可看到 phpinfo 页面的内容。</p>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>Nginx 提供了以下三种负载均衡机制：</p>
+<ol>
+<li>round-robin — （默认）请求以轮询的方式分发到应用服务器，如果后端服务器 down 掉，能自动剔除。<br> weight 指定轮询几率，weight 和访问比率成正比，用于后端服务器性能不均的情况。 </li>
+<li>least-connected — 下一个请求被分配到拥有最少活动连接数的服务器</li>
+<li>ip-hash — 使用一个哈希函数，基于客户端 IP 地址判断请求应该被分发到哪个服务器,这样每个访客固定访问一个后端服务器，可以解决 session 的问题。</li>
+</ol>
+<p>在之前配置 Java 反向代理的时候 nginx.conf 里 upstream 就是用来定义被 Nginx 代理的服务器组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    server 192.168.15.213:8080 weight=3;</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认情况下，使用轮询机制，如果设置了权重，将会按照将会按照权重来分配响应的服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    least_conn;</div><div class="line">    server 192.168.15.213:8080</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置了 least-connected 的负载均衡机制的情况下，Nginx<br>会把新的请求发送到比较不繁忙的服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">upstream dist_servers &#123;</div><div class="line">    ip_hash;</div><div class="line">    server 192.168.15.213:8080</div><div class="line">    server 192.168.15.214:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ip_hash 机制下客户端 IP 地址被用作 hash key 来判断客户端请求应该发送到哪个服务器，这种方法保证了来自相同客户端的请求总是发送到相同服务器（如果服务器可用的话）</p>
+<p>如果有必要把客户端绑定至特定服务器，则可使用ip-hash负载均衡机制。</p>
+<h1 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h1><p>修改 conf.d 文件夹创建 dist.conf 文件<code>vim conf.d/dist.conf</code>，在 location / 节点上方添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^/(.*)/index\.html$ /index?name=$1 last;</div></pre></td></tr></table></figure></p>
+<p>或者进入 nginx-config-docker 文件夹通过命令 <code>git checkout v4.1</code> 检出反向代理配置，再执行<code>nginx -t</code> 检查配置文件是否有错误，没有错误的情况下再执行<code>nginx -s reload</code>重新加载配置。</p>
+<p>分别访问 <a href="">http://dist.com:1080/java/index.html</a> 和 <a href="">http://dist.com:1080/index?name=Java</a> 可以看到，输出的是相同的内容。</p>
+<p>用这种转发的方式就可以实现网站的 <em>伪静态</em>。</p>
+<p>rewrite 行尾的参数详见 <a href="https://wizardforcel.gitbooks.io/nginx-doc/content/Text/3.21_rewrite.html" target="_blank" rel="external">HttpRewrite 模块</a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>演示中使用的 Java web 项目见 <a href="https://github.com/Jefferlau/spring-boot-example" target="_blank" rel="external">spring-boot-example</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/28/Githug-Git-应用场景训练/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2309,182 +2521,6 @@ table th:first-of-type {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeffer Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="谦和斋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" itemprop="url">JHipster 学习笔记(四) - Common 应用程序属性文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T09:21:28+08:00">
-                2017-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JHipster/" itemprop="url" rel="index">
-                    <span itemprop="name">JHipster</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/13/JHipster-学习笔记-4-Common-应用程序属性文件/" class="leancloud_visitors" data-flag-title="JHipster 学习笔记(四) - Common 应用程序属性文件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://jhipster.github.io/common-application-properties/" target="_blank" rel="external">来自官网</a></p>
-<p>JHipster 生成一个 Spring Boot 应用程序，可以使用标准的 Spring Boot 属性机制进行配置。</p>
-<p>这些属性由 JHipster 在生成时配置，并且在开发和生产模式中通常具有不同的值：在 <a href="/2017/06/12/JHipster-学习笔记-3-管理-Profiles/" title="Profiles 文档">Profiles 文档</a> 中了解更多信息。</p>
-<p>在 JHipster 应用程序中，有三种属性：</p>
-<ol>
-<li>Spring Boot 标准应用程序属性</li>
-<li>JHipster 应用程序属性</li>
-<li>应用程序特定的属性</li>
-</ol>
-<h1 id="Spring-Boot-标准应用程序属性"><a href="#Spring-Boot-标准应用程序属性" class="headerlink" title="Spring Boot 标准应用程序属性"></a>Spring Boot 标准应用程序属性</h1><p>像所有 Spring Boot 应用程序一样，JHipster 允许您配置任何标准的 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html" target="_blank" rel="external">Spring Boot 应用程序属性</a>。</p>
-<h1 id="JHipster-应用程序属性"><a href="#JHipster-应用程序属性" class="headerlink" title="JHipster 应用程序属性"></a>JHipster 应用程序属性</h1><p>JHipster 提供了特定的应用程序属性，它们来自 <a href="https://github.com/jhipster/jhipster" target="_blank" rel="external">JHipster服务器端库</a>。这些属性是所有 JHipster 项目的标准配置，但其中一些属性仅在您构建应用程序时选择的方式工作：例如，jhipster.cache.hazelcast 键只有在选择 Hazelcast 作为 Hibernate 二级缓存时才起作用。</p>
-<p>这些属性使用 io.github.jhipster.config.JHipsterProperties 类进行配置。</p>
-<p>以下是这些属性的文档：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div></pre></td><td class="code"><pre><div class="line"><span class="attr">jhipster:</span></div><div class="line"></div><div class="line">    <span class="comment"># 在 JHipster 中用于异步方法调用的线程池</span></div><div class="line"><span class="attr">    async:</span></div><div class="line"><span class="attr">        core-pool-size:</span> <span class="number">2</span> <span class="comment"># Initial pool size</span></div><div class="line"><span class="attr">        max-pool-size:</span> <span class="number">50</span> <span class="comment"># Maximum pool size</span></div><div class="line"><span class="attr">        queue-capacity:</span> <span class="number">10000</span> <span class="comment"># Queue capacity of the pool</span></div><div class="line"></div><div class="line">    <span class="comment"># HTTP configuration</span></div><div class="line"><span class="attr">    http:</span></div><div class="line">        <span class="comment"># V_1_1 for HTTP/1.1 or V_2_0 for HTTP/2.</span></div><div class="line">        <span class="comment"># To use HTTP/2 you will need SSL support (see the Spring Boot "server.ssl" configuration 后附链接)</span></div><div class="line"><span class="attr">        version:</span> <span class="string">V_1_1</span></div><div class="line"><span class="attr">        cache:</span> <span class="comment"># Used by io.github.jhipster.web.filter.CachingHttpHeadersFilter</span></div><div class="line"><span class="attr">            timeToLiveInDays:</span> <span class="number">1461</span> <span class="comment"># Static assets are cached for 4 years by default</span></div><div class="line"></div><div class="line">    <span class="comment"># Hibernate 2nd level cache, used by CacheConfiguration</span></div><div class="line"><span class="attr">    cache:</span></div><div class="line"><span class="attr">        hazelcast:</span> <span class="comment"># Hazelcast configuration</span></div><div class="line"><span class="attr">            time-to-live-seconds:</span> <span class="number">3600</span> <span class="comment"># By default objects stay 1 hour in the cache</span></div><div class="line"><span class="attr">            backup-count:</span> <span class="number">1</span> <span class="comment"># Number of objects backups</span></div><div class="line"><span class="attr">        ehcache:</span> <span class="comment"># Ehcache configuration</span></div><div class="line"><span class="attr">            time-to-live-seconds:</span> <span class="number">3600</span> <span class="comment"># By default objects stay 1 hour in the cache</span></div><div class="line"><span class="attr">            max-entries:</span> <span class="number">100</span> <span class="comment"># Number of objects in each cache entry</span></div><div class="line"></div><div class="line">    <span class="comment"># E-mail properties</span></div><div class="line"><span class="attr">    mail:</span></div><div class="line"><span class="attr">        from:</span> <span class="string">jhipster@localhost</span> <span class="comment"># The default "from" address for e-mails</span></div><div class="line"><span class="attr">        base-url:</span> <span class="attr">http://127.0.0.1:8080</span> <span class="comment"># URL to the application, used inside e-mails</span></div><div class="line"></div><div class="line">    <span class="comment"># Spring Security specific configuration</span></div><div class="line"><span class="attr">    security:</span></div><div class="line"><span class="attr">        remember-me:</span> <span class="comment"># JHipster secure implementation of the remember-me mechanism, for session-based authentication</span></div><div class="line">            <span class="comment"># security key (this key should be unique for your application, and kept secret)</span></div><div class="line"><span class="attr">            key:</span> <span class="number">0</span><span class="string">b32a651e6a65d5731e869dc136fb301b0a8c0e4</span></div><div class="line"><span class="attr">        client-authorization:</span> <span class="comment"># Used with JHipster UAA authentication</span></div><div class="line"><span class="attr">            access-token-uri:</span> <span class="comment"># URL of the JHipster UAA server OAuth tokens</span></div><div class="line"><span class="attr">            token-service-id:</span> <span class="comment"># ID of the current application</span></div><div class="line"><span class="attr">            client-id:</span> <span class="comment"># OAuth client ID</span></div><div class="line"><span class="attr">            client-secret:</span> <span class="comment"># OAuth client secret</span></div><div class="line"><span class="attr">        authentication:</span></div><div class="line"><span class="attr">            jwt:</span> <span class="comment"># JHipster specific JWT implementation</span></div><div class="line"><span class="attr">                secret:</span> <span class="comment"># JWT secret key</span></div><div class="line"><span class="attr">                token-validity-in-seconds:</span> <span class="number">86400</span> <span class="comment"># Token is valid 24 hours</span></div><div class="line"><span class="attr">                token-validity-in-seconds-for-remember-me:</span> <span class="number">2592000</span> <span class="comment"># Remember me token is valid 30 days</span></div><div class="line"><span class="attr">            oauth:</span> <span class="comment"># Used by the JHipster OAuth 2 MongoDB specific implementation</span></div><div class="line"><span class="attr">                client-id:</span> <span class="comment"># OAuth client ID</span></div><div class="line"><span class="attr">                client-secret:</span> <span class="comment"># OAuth client secret</span></div><div class="line"><span class="attr">                token-validity-in-seconds:</span> <span class="number">1800</span> <span class="comment"># Token is valid 30 minutes</span></div><div class="line"></div><div class="line">    <span class="comment"># Swagger configuration</span></div><div class="line"><span class="attr">    swagger:</span></div><div class="line"><span class="attr">        default-include-pattern:</span> <span class="string">/api/.*</span></div><div class="line"><span class="attr">        title:</span> <span class="string">JHipster</span> <span class="string">API</span></div><div class="line"><span class="attr">        description:</span> <span class="string">JHipster</span> <span class="string">API</span> <span class="string">documentation</span></div><div class="line"><span class="attr">        version:</span> <span class="number">0.0</span><span class="number">.1</span></div><div class="line"><span class="attr">        terms-of-service-url:</span></div><div class="line"><span class="attr">        contact-name:</span></div><div class="line"><span class="attr">        contact-url:</span></div><div class="line"><span class="attr">        contact-email:</span></div><div class="line"><span class="attr">        license:</span></div><div class="line"><span class="attr">        license-url:</span></div><div class="line"></div><div class="line">    <span class="comment"># DropWizard Metrics configuration, used by MetricsConfiguration</span></div><div class="line"><span class="attr">    metrics:</span></div><div class="line"><span class="attr">        jmx:</span> <span class="comment"># Export metrics as JMX beans</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">true</span> <span class="comment"># JMX is enabled by default</span></div><div class="line">        <span class="comment"># Send metrics to a Graphite server</span></div><div class="line">        <span class="comment"># Use the "graphite" Maven profile to have the Graphite dependencies</span></div><div class="line"><span class="attr">        graphite:</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">false</span> <span class="comment"># Graphite is disabled by default</span></div><div class="line"><span class="attr">            host:</span> <span class="string">localhost</span></div><div class="line"><span class="attr">            port:</span> <span class="number">2003</span></div><div class="line"><span class="attr">            prefix:</span> <span class="string">jhipster</span></div><div class="line">        <span class="comment"># Send metrics to a Prometheus server</span></div><div class="line">        <span class="comment"># Use the "prometheus" Maven profile to have the Prometheus dependencies</span></div><div class="line"><span class="attr">        prometheus:</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">false</span> <span class="comment"># Prometheus is disabled by default</span></div><div class="line"><span class="attr">            endpoint:</span> <span class="string">/prometheusMetrics</span></div><div class="line"><span class="attr">        logs:</span> <span class="comment"># Reports Dropwizard metrics in the logs</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">false</span></div><div class="line"><span class="attr">            reportFrequency:</span> <span class="number">60</span> <span class="comment"># frequency of reports in seconds</span></div><div class="line"></div><div class="line">    <span class="comment"># Logging configuration, used by LoggingConfiguration</span></div><div class="line"><span class="attr">    logging:</span></div><div class="line"><span class="attr">        logstash:</span> <span class="comment"># Forward logs to Logstash over a socket</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">false</span> <span class="comment"># Logstash is disabled by default</span></div><div class="line"><span class="attr">            host:</span> <span class="string">localhost</span> <span class="comment"># Logstash server URL</span></div><div class="line"><span class="attr">            port:</span> <span class="number">5000</span> <span class="comment"># Logstash server port</span></div><div class="line"><span class="attr">            queue-size:</span> <span class="number">512</span> <span class="comment"># Queue for buffering logs</span></div><div class="line"><span class="attr">        spectator-metrics:</span> <span class="comment"># Reports Netflix Spectator metrics in the logs</span></div><div class="line"><span class="attr">            enabled:</span> <span class="literal">false</span> <span class="comment"># Spectator is disabled by default</span></div><div class="line"></div><div class="line">    <span class="comment"># Spring Social specific configuration, for Twitter/Facebook/Google authentication</span></div><div class="line"><span class="attr">    social:</span></div><div class="line"><span class="attr">        redirect-after-sign-in:</span> <span class="string">"/#/home"</span> <span class="comment"># Redirect URL after successful authentication</span></div><div class="line"></div><div class="line">    <span class="comment"># By default cross-origin resource sharing (CORS) is disabled. Uncomment to enable.</span></div><div class="line">    <span class="comment"># Configure a standard org.springframework.web.cors.CorsConfiguration</span></div><div class="line"><span class="attr">    cors:</span></div><div class="line"><span class="attr">        allowed-origins:</span> <span class="string">"*"</span></div><div class="line"><span class="attr">        allowed-methods:</span> <span class="string">GET,</span> <span class="string">PUT,</span> <span class="string">POST,</span> <span class="string">DELETE,</span> <span class="string">OPTIONS</span></div><div class="line"><span class="attr">        allowed-headers:</span> <span class="string">"*"</span></div><div class="line"><span class="attr">        exposed-headers:</span></div><div class="line"><span class="attr">        allow-credentials:</span> <span class="literal">true</span></div><div class="line"><span class="attr">        max-age:</span> <span class="number">1800</span></div><div class="line"></div><div class="line">    <span class="comment"># Ribbon displayed on the top left-hand side of JHipster applications</span></div><div class="line"><span class="attr">    ribbon:</span></div><div class="line">        <span class="comment"># Comma-separated list of profiles that display a ribbon</span></div><div class="line"><span class="attr">        display-on-active-profiles:</span> <span class="string">dev</span></div></pre></td></tr></table></figure>
-<p>附:</p>
-<ul>
-<li><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-servlet-containers.html#howto-configure-ssl" target="_blank" rel="external">Spring Boot “server.ssl” configuration</a></li>
-<li><a href="https://drissamri.be/blog/java/enable-https-in-spring-boot/" target="_blank" rel="external">Enable HTTPS in Spring Boot</a></li>
-</ul>
-<h1 id="应用程序特定的属性"><a href="#应用程序特定的属性" class="headerlink" title="应用程序特定的属性"></a>应用程序特定的属性</h1><p>强烈建议您生成的应用程序也拥有自己的 Spring Boot 属性。 因为这允许应用程序的类型安全配置，以及 IDE 中的自动完成和文档功能。</p>
-<p>JHipster 已经在配置包中生成了一个 <code>ApplicationProperties</code> 类，它已经被预先配置了，它已经在底层的 <code>application.yml</code>， <code>application-dev.yml</code> 和 <code>application-prod.yml</code> 文件中被记录下来了。 所有你需要做的就是编写你自己的具体属性。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2534,7 +2570,7 @@ table th:first-of-type {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2545,7 +2581,7 @@ table th:first-of-type {
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2556,7 +2592,7 @@ table th:first-of-type {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
