@@ -296,6 +296,178 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/" itemprop="url">Mybatis Generator 配置详解[含表字段注释及@Mapper注解]</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-29T00:53:00+08:00">
+                2016-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/数据持久层/" itemprop="url" rel="index">
+                    <span itemprop="name">数据持久层</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/07/29/Mybatis-Generator-最完整配置详解-含表字段注释及-Mapper注解/" class="leancloud_visitors" data-flag-title="Mybatis Generator 配置详解[含表字段注释及@Mapper注解]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/images/2016/07/29/mybatis_logo.png" class="[class names]" width="350" height="88" title="MyBatis">
+<p>表字段注释需要使用 1.3.3-SNAPSHOT 以上版本[在 2016-07-29 00:53:00 1.3.3-SNAPSHOT 就是最新的版本]。</p>
+<p>JavaClient 即 Mapper 接口里增加注解 @Mapper，目前官方版本尚不支持，我 Fork 过来自己修改了一下，需要的请移步<a href="https://github.com/Jefferlau/generator" target="_blank" rel="external">GitHub</a>下载后自己编译，或者找我索取。如果你使用 Spring boot ＋ MyBatis 就知道我为什么要这么改了。[懒～]</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE generatorConfiguration PUBLIC</span></div><div class="line">        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</div><div class="line">        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" &gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></div><div class="line">     <span class="comment">&lt;!--</span></div><div class="line">       导入属性配置</div><div class="line">       resource：配置资源加载地址，使用resource，MBG从classpath开始找，比如me/jefferlau/generatorConfig.properties</div><div class="line">       url：配置资源加载地质，使用URL的方式，比如file:///Users/jefferlau//generatorConfig.properties.</div><div class="line">       注意，两个属性只能选址一个;</div><div class="line">       如果使用了mybatis-generator-maven-plugin，那么在pom.xml中定义的properties都可以直接在generatorConfig.xml中使用</div><div class="line"></div><div class="line">       &lt;properties resource="generator.properties"&gt;&lt;/properties&gt;</div><div class="line">       &lt;classPathEntry location="$&#123;jdbc.driverLocation&#125;"/&gt;</div><div class="line"></div><div class="line">       &lt;jdbcConnection driverClass="$&#123;jdbc.driverClass&#125;"</div><div class="line">                       connectionURL="$&#123;jdbc.connectionURL&#125;"</div><div class="line">                       userId="$&#123;jdbc.userId&#125;"</div><div class="line">                       password="$&#123;jdbc.password&#125;"&gt;</div><div class="line">       &lt;/jdbcConnection&gt;</div><div class="line">    --&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- Driver Class Path --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">classPathEntry</span></span></div><div class="line">            <span class="attr">location</span>=<span class="string">"/Users/jefferlau/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar"</span>/&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--</span></div><div class="line">        context:生成一组对象的环境</div><div class="line">        id:必选，上下文id，用于在生成错误时提示</div><div class="line">        defaultModelType:指定生成对象的样式</div><div class="line">            1，conditional：类似hierarchical；</div><div class="line">            2，flat：所有内容（主键，blob）等全部生成在一个对象中；</div><div class="line">            3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)</div><div class="line">        targetRuntime:</div><div class="line">            1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；</div><div class="line">            2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；</div><div class="line">        introspectedColumnImpl：类全限定名，用于扩展MBG</div><div class="line">    --&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">"context"</span> <span class="attr">defaultModelType</span>=<span class="string">"flat"</span> <span class="attr">targetRuntime</span>=<span class="string">"MyBatis3"</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；</span></div><div class="line">            一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖</div><div class="line">         --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"autoDelimitKeywords"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，</span></div><div class="line">            比如ORACLE就是双引号，MYSQL默认是`反引号；默认是双引号</div><div class="line">         --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"beginningDelimiter"</span> <span class="attr">value</span>=<span class="string">"`"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"endingDelimiter"</span> <span class="attr">value</span>=<span class="string">"`"</span>/&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 生成的Java文件的编码 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javaFileEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 格式化java代码 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"javaFormatter"</span> <span class="attr">value</span>=<span class="string">"org.mybatis.generator.api.dom.DefaultJavaFormatter"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 格式化XML代码 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"xmlFormatter"</span> <span class="attr">value</span>=<span class="string">"org.mybatis.generator.api.dom.DefaultXmlFormatter"</span>/&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- Model 实现 Serializable 增加 serialVersionUID --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span> <span class="attr">type</span>=<span class="string">"org.mybatis.generator.plugins.SerializablePlugin"</span>/&gt;</span></div><div class="line">        <span class="comment">&lt;!-- Model 生成toString方法 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span> <span class="attr">type</span>=<span class="string">"org.mybatis.generator.plugins.ToStringPlugin"</span>/&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 两个 suppress 的注释建议不要去除,否则多次生成的xml是追加模式 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressAllComments"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suppressDate"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">            <span class="comment">&lt;!-- 此处为 true 时，生成的 Model 包含对应表字段注释 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"addRemarkComments"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">            <span class="comment">&lt;!-- 此处为 true 时，生成的 Mapper 接口将增加 @Mapper 注解，Spring ComponentScan 时可自动识别 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"addMapperAnnotation"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 必须要有的，使用这个配置链接数据库 --&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">"com.mysql.jdbc.Driver"</span></span></div><div class="line">                        <span class="attr">connectionURL</span>=<span class="string">"jdbc:mysql://localhost:3306/logistics_kemis?autoReconnect=true&amp;amp;characterEncoding=utf8&amp;amp;characterSetResults=utf8&amp;amp;zeroDateTimeBehavior=convertToNull"</span></div><div class="line">                        <span class="attr">userId</span>=<span class="string">"root"</span> <span class="attr">password</span>=<span class="string">"12345678"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- java类型处理器</span></div><div class="line">            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；</div><div class="line">            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；</div><div class="line">        --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">javaTypeResolver</span> <span class="attr">type</span>=<span class="string">"org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--</span></div><div class="line">                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型</div><div class="line">                false：默认,</div><div class="line">                    scale&gt;0;length&gt;18：使用BigDecimal;</div><div class="line">                    scale=0;length[10,18]：使用Long；</div><div class="line">                    scale=0;length[5,9]：使用Integer；</div><div class="line">                    scale=0;length&lt;5：使用Short；</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"forceBigDecimals"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- java模型创建器，是必须要的元素</span></div><div class="line">            负责：1，key类（见context的defaultModelType）；2，java类；3，查询类</div><div class="line">            targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；</div><div class="line">            targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录</div><div class="line">         --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"me.jefferlau.model"</span> <span class="attr">targetProject</span>=<span class="string">"src/main/java"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--  for MyBatis3/MyBatis3Simple</span></div><div class="line">                自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"constructorBased"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- for MyBatis3 / MyBatis3Simple</span></div><div class="line">                是否创建一个不可变的类，如果为true，</div><div class="line">                那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"immutable"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 设置一个根对象，</span></div><div class="line">                如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项</div><div class="line">                注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：</div><div class="line">                    1，属性名相同，类型相同，有相同的getter/setter方法；</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"rootClass"</span> <span class="attr">value</span>=<span class="string">"me.jefferlau.model.BaseModel"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 设置是否在getter方法中，对String类型字段调用trim()方法 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"trimStrings"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 生成SQL map的XML文件生成器，</span></div><div class="line">            注意，在Mybatis3之后，我们可以使用mapper.xml文件+Mapper接口（或者不用mapper接口），</div><div class="line">                或者只使用Mapper接口+Annotation，所以，如果 javaClientGenerator配置中配置了需要生成XML的话，这个元素就必须配置</div><div class="line">            targetPackage/targetProject:同javaModelGenerator</div><div class="line">         --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"me.jefferlau.mybatis.mapper"</span> <span class="attr">targetProject</span>=<span class="string">"src/main/resources"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 对于mybatis来说，即生成Mapper接口，注意，如果没有配置该元素，那么默认不会生成Mapper接口</span></div><div class="line">            targetPackage/targetProject:同javaModelGenerator</div><div class="line">            type：选择怎么生成mapper接口（在MyBatis3/MyBatis3Simple下）：</div><div class="line">                1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；</div><div class="line">                2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；</div><div class="line">                3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；</div><div class="line">            注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER</div><div class="line">        --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">targetPackage</span>=<span class="string">"me.jefferlau.mapper"</span> <span class="attr">type</span>=<span class="string">"MIXEDMAPPER"</span> <span class="attr">targetProject</span>=<span class="string">"src/main/java"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"enableSubPackages"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 可以为所有生成的接口添加一个父接口，但是MBG只负责生成，不负责检查</span></div><div class="line">            &lt;property name="rootInterface" value="me.jefferlau.mapper.BaseMapper"/&gt;</div><div class="line">             --&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素</span></div><div class="line">            选择的table会生成一下文件：</div><div class="line">            1，SQL map文件</div><div class="line">            2，生成一个主键类；</div><div class="line">            3，除了BLOB和主键的其他字段的类；</div><div class="line">            4，包含BLOB的类；</div><div class="line">            5，一个用户生成动态查询的条件类（selectByExample, deleteByExample），可选；</div><div class="line">            6，Mapper接口（可选）</div><div class="line"></div><div class="line">            tableName（必要）：要生成对象的表名；</div><div class="line">            注意：大小写敏感问题。正常情况下，MBG会自动的去识别数据库标识符的大小写敏感度，在一般情况下，MBG会</div><div class="line">                根据设置的schema，catalog或tablename去查询数据表，按照下面的流程：</div><div class="line">                1，如果schema，catalog或tablename中有空格，那么设置的是什么格式，就精确的使用指定的大小写格式去查询；</div><div class="line">                2，否则，如果数据库的标识符使用大写的，那么MBG自动把表名变成大写再查找；</div><div class="line">                3，否则，如果数据库的标识符使用小写的，那么MBG自动把表名变成小写再查找；</div><div class="line">                4，否则，使用指定的大小写格式查询；</div><div class="line">            另外的，如果在创建表的时候，使用的""把数据库对象规定大小写，就算数据库标识符是使用的大写，在这种情况下也会使用给定的大小写来创建表名；</div><div class="line">            这个时候，请设置delimitIdentifiers="true"即可保留大小写格式；</div><div class="line"></div><div class="line">            可选：</div><div class="line">            1，schema：数据库的schema；</div><div class="line">            2，catalog：数据库的catalog；</div><div class="line">            3，alias：为数据表设置的别名，如果设置了alias，那么生成的所有的SELECT SQL语句中，列名会变成：alias_actualColumnName</div><div class="line">            4，domainObjectName：生成的domain类的名字，如果不设置，直接使用表名作为domain类的名字；可以设置为somepck.domainName，</div><div class="line">               那么会自动把domainName类再放到somepck包里面；</div><div class="line">            5，enableInsert（默认true）：指定是否生成insert语句；</div><div class="line">            6，enableSelectByPrimaryKey（默认true）：指定是否生成按照主键查询对象的语句（就是getById或get）；</div><div class="line">            7，enableSelectByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询语句；</div><div class="line">            8，enableUpdateByPrimaryKey（默认true）：指定是否生成按照主键修改对象的语句（即update)；</div><div class="line">            9，enableDeleteByPrimaryKey（默认true）：指定是否生成按照主键删除对象的语句（即delete）；</div><div class="line">            10，enableDeleteByExample（默认true）：MyBatis3Simple为false，指定是否生成动态删除语句；</div><div class="line">            11，enableCountByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询总条数语句（用于分页的总条数查询）；</div><div class="line">            12，enableUpdateByExample（默认true）：MyBatis3Simple为false，指定是否生成动态修改语句（只修改对象中不为空的属性）；</div><div class="line">            13，modelType：参考context元素的defaultModelType，相当于覆盖；</div><div class="line">            14，delimitIdentifiers：参考tableName的解释，注意，默认的delimitIdentifiers是双引号，如果类似MYSQL这样的数据库，</div><div class="line">                使用的是`（反引号，那么还需要设置context的beginningDelimiter和endingDelimiter属性）</div><div class="line">            15，delimitAllColumns：设置是否所有生成的SQL中的列名都使用标识符引起来。默认为false，delimitIdentifiers参考context的属性</div><div class="line"></div><div class="line">            注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；</div><div class="line">         --&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"%"</span> <span class="attr">enableCountByExample</span>=<span class="string">"true"</span> <span class="attr">enableDeleteByExample</span>=<span class="string">"true"</span> <span class="attr">enableSelectByExample</span>=<span class="string">"true"</span> <span class="attr">enableUpdateByExample</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- true 使用原名称 false 使用驼峰式属性命名 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"useActualColumnNames"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 参考 javaModelGenerator 的 constructorBased属性 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"constructorBased"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema； --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"ignoreQualifiersAtRuntime"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 参考 javaModelGenerator 的 immutable 属性 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"immutable"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 指定是否只生成domain类，如果设置为true，只生成domain类，如果还配置了sqlMapGenerator，那么在mapper XML文件中，只生成resultMap元素 --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"modelOnly"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 参考 javaModelGenerator 的 rootClass 属性</span></div><div class="line">            &lt;property name="rootClass" value=""/&gt;</div><div class="line">             --&gt;</div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 参考javaClientGenerator 的  rootInterface 属性</span></div><div class="line">            &lt;property name="rootInterface" value=""/&gt;</div><div class="line">            --&gt;</div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 如果设置了runtimeCatalog，那么在生成的SQL中，使用该指定的catalog，而不是table元素上的catalog</span></div><div class="line">            &lt;property name="runtimeCatalog" value=""/&gt;</div><div class="line">            --&gt;</div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 如果设置了runtimeSchema，那么在生成的SQL中，使用该指定的schema，而不是table元素上的schema</span></div><div class="line">            &lt;property name="runtimeSchema" value=""/&gt;</div><div class="line">            --&gt;</div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 如果设置了runtimeTableName，那么在生成的SQL中，使用该指定的tablename，而不是table元素上的tablename</span></div><div class="line">            &lt;property name="runtimeTableName" value=""/&gt;</div><div class="line">            --&gt;</div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- 注意，该属性只针对MyBatis3Simple有用；</span></div><div class="line">                如果选择的runtime是MyBatis3Simple，那么会生成一个SelectAll方法，如果指定了selectAllOrderByClause，那么会在该SQL中添加指定的这个order条件；</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"selectAllOrderByClause"</span> <span class="attr">value</span>=<span class="string">"age desc,username asc"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- generatedKey用于生成生成主键的方法，</span></div><div class="line">                如果设置了该元素，MBG会在生成的&lt;insert&gt;元素中生成一条正确的&lt;selectKey&gt;元素，该元素可选</div><div class="line">                column:主键的列名；</div><div class="line">                sqlStatement：要生成的selectKey语句，有以下可选项：</div><div class="line">                    Cloudscape:相当于selectKey的SQL为： VALUES IDENTITY_VAL_LOCAL()</div><div class="line">                    DB2       :相当于selectKey的SQL为： VALUES IDENTITY_VAL_LOCAL()</div><div class="line">                    DB2_MF    :相当于selectKey的SQL为：SELECT IDENTITY_VAL_LOCAL() FROM SYSIBM.SYSDUMMY1</div><div class="line">                    Derby      :相当于selectKey的SQL为：VALUES IDENTITY_VAL_LOCAL()</div><div class="line">                    HSQLDB      :相当于selectKey的SQL为：CALL IDENTITY()</div><div class="line">                    Informix  :相当于selectKey的SQL为：select dbinfo('sqlca.sqlerrd1') from systables where tabid=1</div><div class="line">                    MySql      :相当于selectKey的SQL为：SELECT LAST_INSERT_ID()</div><div class="line">                    SqlServer :相当于selectKey的SQL为：SELECT SCOPE_IDENTITY()</div><div class="line">                    SYBASE      :相当于selectKey的SQL为：SELECT @@IDENTITY</div><div class="line">                    JDBC      :相当于在生成的insert元素上添加useGeneratedKeys="true"和keyProperty属性</div><div class="line">                identity: 自增主键  If true, then the column is flagged as an identity column and the generated &lt;selectKey&gt; element</div><div class="line">                will be placed after the insert (for an identity column). If false, then the generated &lt;selectKey&gt; will be placed</div><div class="line">                before the insert (typically for a sequence).</div><div class="line">             --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">generatedKey</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">sqlStatement</span>=<span class="string">"MySql"</span> <span class="attr">identity</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!--</span></div><div class="line">                列的命名规则：</div><div class="line">                    MBG使用 &lt;columnRenamingRule&gt; 元素在计算列名的对应 名称之前，先对列名进行重命名，</div><div class="line">                    作用：如需要对BUSI_CLIENT_NO 前的BUSI_进行过滤,可设置searchString为"^BUSI_"</div><div class="line">                支持正在表达式</div><div class="line">                    searchString 表示要被换掉的字符串</div><div class="line">                    replaceString 则是要换成的字符串，默认情况下为空字符串，可选</div><div class="line"></div><div class="line">                注意，MBG是使用java.util.regex.Matcher.replaceAll来替换searchString和replaceString的，</div><div class="line">                如果使用了columnOverride元素，该属性无效；</div><div class="line"></div><div class="line">            &lt;columnRenamingRule searchString="" replaceString=""/&gt;</div><div class="line">             --&gt;</div><div class="line"></div><div class="line"></div><div class="line">            <span class="comment">&lt;!--</span></div><div class="line">                覆盖MBG对Model 的生成规则</div><div class="line">                column: 数据库的列名</div><div class="line">                javaType: 对应的Java数据类型的完全限定名</div><div class="line">                在必要的时候可以覆盖由JavaTypeResolver计算得到的java数据类型. For some databases,</div><div class="line">                this is necessary to handle "odd" database types (e.g. MySql's unsigned bigint type should be mapped to java.lang.Object).</div><div class="line">                jdbcType:该列的JDBC数据类型(INTEGER, DECIMAL, NUMERIC, VARCHAR, etc.)，该列可以覆盖由JavaTypeResolver计算得到的Jdbc类型，</div><div class="line">                    对某些数据库而言，对于处理特定的JDBC 驱动癖好 很有必要(e.g. DB2's LONGVARCHAR type should be mapped to VARCHAR for iBATIS).</div><div class="line">                typeHandler:</div><div class="line"></div><div class="line">                注:一个table元素中可以有多个 columnOverride 元素</div><div class="line">             --&gt;</div><div class="line">            <span class="comment">&lt;!--&lt;columnOverride column="username"&gt;--&gt;</span></div><div class="line">                <span class="comment">&lt;!-- 使用property属性来指定列要生成的属性名称 --&gt;</span></div><div class="line">                <span class="comment">&lt;!--&lt;property name="property" value="userName"/&gt;--&gt;</span></div><div class="line"></div><div class="line">                <span class="comment">&lt;!-- javaType用于指定生成的domain的属性类型，使用类型的全限定名</span></div><div class="line">                &lt;property name="javaType" value=""/&gt;</div><div class="line">                 --&gt;</div><div class="line"></div><div class="line">                <span class="comment">&lt;!-- jdbcType用于指定该列的JDBC类型</span></div><div class="line">                &lt;property name="jdbcType" value=""/&gt;</div><div class="line">                 --&gt;</div><div class="line"></div><div class="line">                <span class="comment">&lt;!-- typeHandler 用于指定该列使用到的TypeHandler，如果要指定，配置类型处理器的全限定名</span></div><div class="line">                    注意，mybatis中，不会生成到mybatis-config.xml中的typeHandler</div><div class="line">                    只会生成类似：where id = #&#123;id,jdbcType=BIGINT,typeHandler=me.jefferlau.mybatis.MyTypeHandler&#125;的参数描述</div><div class="line">                &lt;property name="jdbcType" value=""/&gt;</div><div class="line">                --&gt;</div><div class="line"></div><div class="line">                <span class="comment">&lt;!-- 参考table元素的delimitAllColumns配置，默认为false</span></div><div class="line">                &lt;property name="delimitedColumnName" value=""/&gt;</div><div class="line">                 --&gt;</div><div class="line">            <span class="comment">&lt;!--&lt;/columnOverride&gt;--&gt;</span></div><div class="line"></div><div class="line">            <span class="comment">&lt;!-- ignoreColumn设置一个MGB忽略的列，如果设置了改列，那么在生成的domain中，生成的SQL中，都不会有该列出现</span></div><div class="line">                column:指定要忽略的列的名字；</div><div class="line">                delimitedColumnName：参考table元素的delimitAllColumns配置，默认为false</div><div class="line">                覆盖MBG对Model 的生成规则</div><div class="line">                column: 数据库的列名</div><div class="line">                javaType: 对应的Java数据类型的完全限定名</div><div class="line">                在必要的时候可以覆盖由JavaTypeResolver计算得到的java数据类型. For some databases,</div><div class="line">                this is necessary to handle "odd" database types (e.g. MySql's unsigned bigint type should be mapped to java.lang.Object).</div><div class="line">                jdbcType:该列的JDBC数据类型(INTEGER, DECIMAL, NUMERIC, VARCHAR, etc.)，</div><div class="line">                该列可以覆盖由JavaTypeResolver计算得到的Jdbc类型，对某些数据库而言，对于处理特定的JDBC 驱动癖好</div><div class="line">                很有必要(e.g. DB2's LONGVARCHAR type should be mapped to VARCHAR for iBATIS).</div><div class="line">                typeHandler:</div><div class="line"></div><div class="line">                注:一个table元素中可以有多个ignoreColumn元素</div><div class="line">            &lt;ignoreColumn column="deptId" delimitedColumnName=""/&gt;</div><div class="line">            --&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">context</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><em>参考资料</em></p>
+<p><a href="http://mbg.cndocs.tk/index.html" target="_blank" rel="external">http://mbg.cndocs.tk/index.html</a><br><a href="http://www.jianshu.com/p/e09d2370b796" target="_blank" rel="external">http://www.jianshu.com/p/e09d2370b796</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2016/07/26/Spring-JdbcTemplate-queryForList-String-sql-Object-args-Class-T-elementType-绝对是个好坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3308,542 +3480,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2016/06/22/Sublime-Text-Shortcuts-for-Mac-OS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeffer Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="谦和斋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/22/Sublime-Text-Shortcuts-for-Mac-OS/" itemprop="url">Sublime Text Shortcuts for Mac OS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-22T17:36:16+08:00">
-                2016-06-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/06/22/Sublime-Text-Shortcuts-for-Mac-OS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/06/22/Sublime-Text-Shortcuts-for-Mac-OS/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/06/22/Sublime-Text-Shortcuts-for-Mac-OS/" class="leancloud_visitors" data-flag-title="Sublime Text Shortcuts for Mac OS">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>推荐使用最新版本的Chrome/Safari或者Firefox浏览器浏览此页，否则Mac按键可能无法正常展示</li>
-<li>The Latest Version of Chrome/Safari or Firefox is Recommeded.</li>
-</ul>
-<h2 id="Editing"><a href="#Editing" class="headerlink" title="Editing"></a>Editing</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + X</td>
-<td style="text-align:left">Cut line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ↩</td>
-<td style="text-align:left">Insert line after</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + ↩</td>
-<td style="text-align:left">Insert line before</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌃ + ↑</td>
-<td style="text-align:left">Move line/selection up</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌃ + ↓</td>
-<td style="text-align:left">Move line/selection down</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + L</td>
-<td style="text-align:left">Select line - Repeat to select next lines</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + D</td>
-<td style="text-align:left">Select word - Repeat to select next occurrence</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⌘ + G</td>
-<td style="text-align:left">Select all occurrences of current selection</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + ↑</td>
-<td style="text-align:left">Extra cursor on the line above</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + ↓</td>
-<td style="text-align:left">Extra cursor on the line below</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + M</td>
-<td style="text-align:left">Jump to closing parentheses Repeat to jump to opening parentheses</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + M</td>
-<td style="text-align:left">Select all contents of the current parentheses</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + A, ⌘ + Left</td>
-<td style="text-align:left">Move to beginning of line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + E, ⌘ + Right</td>
-<td style="text-align:left">Move to end of line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + K, ⌘ + K</td>
-<td style="text-align:left">Delete from cursor to end of line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + K + ⌫</td>
-<td style="text-align:left">Delete from cursor to start of line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ]</td>
-<td style="text-align:left">Indent current line(s)</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + [</td>
-<td style="text-align:left">Un-indent current line(s)</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + D</td>
-<td style="text-align:left">Duplicate line(s)</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + J</td>
-<td style="text-align:left">Join line below to the end of the current line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + /</td>
-<td style="text-align:left">Comment/un-comment current line</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + /</td>
-<td style="text-align:left">Block comment current selection</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + Y</td>
-<td style="text-align:left">Redo, or repeat last keyboard shortcut command</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + V</td>
-<td style="text-align:left">Paste and indent correctly</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + Space</td>
-<td style="text-align:left">Select next auto-complete suggestion</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + U</td>
-<td style="text-align:left">Soft undo; jumps to your last change before undoing change when repeated</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + Up</td>
-<td style="text-align:left">Column selection up</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + Down</td>
-<td style="text-align:left">Column selection down</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + W</td>
-<td style="text-align:left">Wrap Selection in html tag</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + K</td>
-<td style="text-align:left">Delete current line of cursor</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Navigation-Goto-Anywhere"><a href="#Navigation-Goto-Anywhere" class="headerlink" title="Navigation/Goto Anywhere"></a>Navigation/Goto Anywhere</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + P or ⌘ + T</td>
-<td style="text-align:left">Quick-open files by name</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + R</td>
-<td style="text-align:left">Goto symbol Goto word in current file</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + G</td>
-<td style="text-align:left">Goto line in current file</td>
-</tr>
-</tbody>
-</table>
-<h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + P</td>
-<td style="text-align:left">Command Palette</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + `</td>
-<td style="text-align:left">Python Console</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⌘ + F</td>
-<td style="text-align:left">Toggle fullscreen mode</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + ⌘ + F</td>
-<td style="text-align:left">Toggle distraction-free mode</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + K, ⌘ + B</td>
-<td style="text-align:left">Toggle side bar</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + P</td>
-<td style="text-align:left">Show scope in status bar</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Find-Replace"><a href="#Find-Replace" class="headerlink" title="Find/Replace"></a>Find/Replace</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + F</td>
-<td style="text-align:left">Find</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + F</td>
-<td style="text-align:left">Replace</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + F</td>
-<td style="text-align:left">Find in files</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Scrolling"><a href="#Scrolling" class="headerlink" title="Scrolling"></a>Scrolling</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌃ + V</td>
-<td style="text-align:left">Scroll down one page</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + L</td>
-<td style="text-align:left">Center current line vertically in page</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + Down</td>
-<td style="text-align:left">Scroll to end of file</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + Up</td>
-<td style="text-align:left">Scroll to start of file</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + t</td>
-<td style="text-align:left">Open last closed tab</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + [NUM]</td>
-<td style="text-align:left">Jump to tab in current group where num is 1-9</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + 0</td>
-<td style="text-align:left">Jump to 10th tab in current group</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + [</td>
-<td style="text-align:left">Cycle left through tabs</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⇧ + ]</td>
-<td style="text-align:left">Cycle right through tabs</td>
-</tr>
-<tr>
-<td style="text-align:left">^ + Tab</td>
-<td style="text-align:left">Cycle up through recent tabs</td>
-</tr>
-<tr>
-<td style="text-align:left">⇧ + ^ + Tab</td>
-<td style="text-align:left">Cycle down through recent tabs</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left">Find in files</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Split-window"><a href="#Split-window" class="headerlink" title="Split window"></a>Split window</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + 1</td>
-<td style="text-align:left">Revert view to single column</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + 2</td>
-<td style="text-align:left">Split view into two columns</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + 3</td>
-<td style="text-align:left">Split view into three columns</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + 4</td>
-<td style="text-align:left">Split view into four columns</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌥ + 5</td>
-<td style="text-align:left">Set view to grid (4 groups)</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + [NUM]</td>
-<td style="text-align:left">Jump to group where num is 1-4</td>
-</tr>
-<tr>
-<td style="text-align:left">⌃ + ⇧ + [NUM]</td>
-<td style="text-align:left">Move file to specified group where num is 1-4</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Bookmarks"><a href="#Bookmarks" class="headerlink" title="Bookmarks"></a>Bookmarks</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + F2</td>
-<td style="text-align:left">Toggle bookmark</td>
-</tr>
-<tr>
-<td style="text-align:left">F2</td>
-<td style="text-align:left">Next bookmark</td>
-</tr>
-<tr>
-<td style="text-align:left">⇧ + F2</td>
-<td style="text-align:left">Previous bookmark</td>
-</tr>
-<tr>
-<td style="text-align:left">⇧ + ⌘ + F2</td>
-<td style="text-align:left">Clear bookmarks</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Text-manipulation"><a href="#Text-manipulation" class="headerlink" title="Text manipulation"></a>Text manipulation</h2><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Keypress</th>
-<th style="text-align:left">Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">⌘ + K, ⌘ + U</td>
-<td style="text-align:left">Transform to Uppercase</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + K, ⌘ + L</td>
-<td style="text-align:left">Transform to Lowercase</td>
-</tr>
-<tr>
-<td style="text-align:left">⌘ + ⌃ + up, ⌘ + ⌃ + down</td>
-<td style="text-align:left">Clip text upwards / downwards</td>
-</tr>
-</tbody>
-</table>
-<p>REF:</p>
-<ol>
-<li><a href="http://www.sublimetext.com/docs/2/index.html" target="_blank" rel="external">http://www.sublimetext.com/docs/2/index.html</a></li>
-<li><a href="http://docs.sublimetext.info/en/latest/index.html" target="_blank" rel="external">http://docs.sublimetext.info/en/latest/index.html</a></li>
-<li><a href="https://tutsplus.com/course/improve-workflow-in-sublime-text-2/" target="_blank" rel="external">https://tutsplus.com/course/improve-workflow-in-sublime-text-2/</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -3893,7 +3529,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -3904,7 +3540,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -3915,7 +3551,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
