@@ -1,0 +1,1058 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Golang,Golang 学习笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言絮语：很久很久以前，就有学习 Go 语言的计划，但是因为各种各样的问题及懒，一直拖到现在才真正开始着手，铭记为鉴！ 另：本笔记所使用环境为 macOS 和 GoLand，对其他操作系统和集成开发环境未必有参考价值！ 安装Golang 官方网站Golang 官方镜像站(国内推荐) 使用 Homebrew 查看 Go 语言信息 brew info golang，可知当前支持的最新版本 go: st">
+<meta name="keywords" content="Golang,Golang 学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand)">
+<meta property="og:url" content="http://jefferlau.me/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/index.html">
+<meta property="og:site_name" content="谦和斋">
+<meta property="og:description" content="前言絮语：很久很久以前，就有学习 Go 语言的计划，但是因为各种各样的问题及懒，一直拖到现在才真正开始着手，铭记为鉴！ 另：本笔记所使用环境为 macOS 和 GoLand，对其他操作系统和集成开发环境未必有参考价值！ 安装Golang 官方网站Golang 官方镜像站(国内推荐) 使用 Homebrew 查看 Go 语言信息 brew info golang，可知当前支持的最新版本 go: st">
+<meta property="og:image" content="http://jefferlau.me/images/2020/03/01.png">
+<meta property="og:image" content="http://jefferlau.me/images/2020/03/02.png">
+<meta property="og:updated_time" content="2020-03-29T07:11:41.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand)">
+<meta name="twitter:description" content="前言絮语：很久很久以前，就有学习 Go 语言的计划，但是因为各种各样的问题及懒，一直拖到现在才真正开始着手，铭记为鉴！ 另：本笔记所使用环境为 macOS 和 GoLand，对其他操作系统和集成开发环境未必有参考价值！ 安装Golang 官方网站Golang 官方镜像站(国内推荐) 使用 Homebrew 查看 Go 语言信息 brew info golang，可知当前支持的最新版本 go: st">
+<meta name="twitter:image" content="http://jefferlau.me/images/2020/03/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jefferlau.me/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/"/>
+
+
+
+
+
+  <title>Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand) | 谦和斋</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?58386307b8e0d732d7f273ee52113aca";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">谦和斋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做饭不好吃的程序员不是好爸爸</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jefferlau.me/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeffer Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦和斋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-29T12:07:47+08:00">
+                2020-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Golang/" itemprop="url" rel="index">
+                    <span itemprop="name">Golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Golang/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/" class="leancloud_visitors" data-flag-title="Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>前言絮语：很久很久以前，就有学习 Go 语言的计划，但是因为各种各样的问题及懒，一直拖到现在才真正开始着手，铭记为鉴！</em></p>
+<p><em>另：本笔记所使用环境为 macOS 和 GoLand，对其他操作系统和集成开发环境未必有参考价值！</em></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://golang.org/" target="_blank" rel="external">Golang 官方网站</a><br><a href="https://golang.google.cn" target="_blank" rel="external">Golang 官方镜像站(国内推荐)</a></p>
+<p>使用 <code>Homebrew</code> 查看 Go 语言信息 <code>brew info golang</code>，可知当前支持的最新版本 <code>go: stable 1.14 (bottled), HEAD</code>，操作系统版本需满足 <code>Required: macOS &gt;= 10.11 ✔</code>，我这都是满足的，正式开始安装。</p>
+<p>执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install golang</div></pre></td></tr></table></figure></p>
+<p>等待安装完成后，执行 <code>go version</code> 验证安装情况，如果安装成功会输出 Go 语言版本信息，如：<code>go version go1.14 darwin/amd64</code>，如果失败重新执行 <code>Homebrew</code> 的安装命令即可。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>执行命令 <code>go env</code> 查看 Go 语言环境信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">GO111MODULE=&quot;&quot;</div><div class="line">GOARCH=&quot;amd64&quot;</div><div class="line">GOBIN=&quot;&quot;</div><div class="line">GOCACHE=&quot;/Users/username/Library/Caches/go-build&quot;</div><div class="line">GOENV=&quot;/Users/username/Library/Application Support/go/env&quot;</div><div class="line">GOEXE=&quot;&quot;</div><div class="line">GOFLAGS=&quot;&quot;</div><div class="line">GOHOSTARCH=&quot;amd64&quot;</div><div class="line">GOHOSTOS=&quot;darwin&quot;</div><div class="line">GOINSECURE=&quot;&quot;</div><div class="line">GONOPROXY=&quot;&quot;</div><div class="line">GONOSUMDB=&quot;&quot;</div><div class="line">GOOS=&quot;darwin&quot;</div><div class="line">GOPATH=&quot;/Users/username/go&quot;</div><div class="line">GOPRIVATE=&quot;&quot;</div><div class="line">GOPROXY=&quot;https://proxy.golang.org,direct&quot;</div><div class="line">GOROOT=&quot;/usr/local/Cellar/go/1.14/libexec&quot;</div><div class="line">GOSUMDB=&quot;sum.golang.org&quot;</div><div class="line">GOTMPDIR=&quot;&quot;</div><div class="line">GOTOOLDIR=&quot;/usr/local/Cellar/go/1.14/libexec/pkg/tool/darwin_amd64&quot;</div><div class="line">GCCGO=&quot;gccgo&quot;</div><div class="line">AR=&quot;ar&quot;</div><div class="line">CC=&quot;clang&quot;</div><div class="line">CXX=&quot;clang++&quot;</div><div class="line">CGO_ENABLED=&quot;1&quot;</div><div class="line">GOMOD=&quot;&quot;</div><div class="line">CGO_CFLAGS=&quot;-g -O2&quot;</div><div class="line">CGO_CPPFLAGS=&quot;&quot;</div><div class="line">CGO_CXXFLAGS=&quot;-g -O2&quot;</div><div class="line">CGO_FFLAGS=&quot;-g -O2&quot;</div><div class="line">CGO_LDFLAGS=&quot;-g -O2&quot;</div><div class="line">PKG_CONFIG=&quot;pkg-config&quot;</div><div class="line">GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/cr/v7bb_7yj5rv22908q537qq640000gn/T/go-build925331455=/tmp/go-build -gno-record-gcc-switches -fno-common&quot;</div></pre></td></tr></table></figure>
+<p><code>GOPROXY</code> 因为特殊的原因，要把 <code>https://proxy.golang.org</code> 改成比较友好的地址，推荐如下：</p>
+<ul>
+<li><code>https://goproxy.io</code></li>
+<li><code>https://goproxy.cn</code></li>
+</ul>
+<p>这两个都是支持谷歌官方 sum.golang.org 的代理。</p>
+<p>配置命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">go env -w GO111MODULE=on</div><div class="line">go env -w GOPROXY=https://goproxy.cn,direct</div><div class="line"></div><div class="line"><span class="comment"># 设置不走 proxy 的私有仓库，多个用逗号相隔（可选）</span></div><div class="line"><span class="comment"># go env -w GOPRIVATE=*.example.com</span></div></pre></td></tr></table></figure></p>
+<p>配置后依然使用 <code>go env</code> 查看 Go 语言环境信息，检查配置是否生效。</p>
+<h1 id="GoLand-创建第一个项目"><a href="#GoLand-创建第一个项目" class="headerlink" title="GoLand 创建第一个项目"></a>GoLand 创建第一个项目</h1><h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>打开 GoLand 应用，选择 <code>New Project</code>，在打开的窗口左侧选择 <code>Go Modules(vgo)</code>，右侧 <code>Location</code> 里选择或填写项目路径及名称后点击<code>Create</code>，创建一个空的 Go 语言项目。</p>
+<img src="/images/2020/03/01.png" class="[class names]" width="650" height="88" title="GoLand New Project 界面">
+<p>项目的目录结构为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">firstProject</div><div class="line">└── go.mod</div><div class="line"></div><div class="line">0 directories, 1 file</div></pre></td></tr></table></figure></p>
+<img src="/images/2020/03/02.png" class="[class names]" width="650" height="88" title="GoLand 项目界面">
+<p>这里的 <code>go.mod</code> 文件和 Java 里的 <code>Maven</code> 作用看起来是一样的，等熟悉 Go 语言之后再做比较吧。</p>
+<h2 id="添加-main-文件"><a href="#添加-main-文件" class="headerlink" title="添加 main 文件"></a>添加 main 文件</h2><p>在项目根目录 New -&gt; go file 命名为 main<br>将文件第一行 <code>package</code> 后的名称改为 <code>main</code>，再添加一个 main 函数，main.go 文件看起来如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    fmt.Println(<span class="string">"Hello World!"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开 GoLand 下方的 Terminal 窗口，执行 <code>go run main.go</code>，一切顺利的话可以看到回显“Hello World!”。</p>
+<h2 id="创建其他-package-及引用"><a href="#创建其他-package-及引用" class="headerlink" title="创建其他 package 及引用"></a>创建其他 package 及引用</h2><p>在项目根目录下新增 <code>util</code> 目录，并创建 <code>MyUtil.go</code> 文件，并写一个 public 的方法(第一个字母大写)。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> util</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Max</span><span class="params">(a, b <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> a &gt; b &#123;</div><div class="line">        <span class="keyword">return</span> a</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改 <code>main.go</code> 文件，在 main 方法增加 <code>fmt.Println(util.Max(50, 75))</code>，内容看起来像这样</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">    <span class="string">"firstProject/util"</span></div><div class="line">    <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    fmt.Println(<span class="string">"Hello World!"</span>)</div><div class="line">    fmt.Println(util.Max(<span class="number">50</span>, <span class="number">75</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>其中 <code>import</code> 部分不用手写 GoLand 会自动处理。</em></p>
+<p>打开 GoLand 下方的 Terminal 窗口，再次执行 <code>go run main.go</code>，一切顺利的话可以看到回显中包含“75”字样。</p>
+<p>这个版本的 Go 语言用起来感觉与 Java 的习惯差不多，学习起来应该不会有太大的障碍，祝一切顺利~！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将是鼓励我继续的动力！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="Jeffer Lau WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Jeffer Lau Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Golang/" rel="tag"># Golang</a>
+          
+            <a href="/tags/Golang-学习笔记/" rel="tag"># Golang 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/05/Android-映射到探界者中控-以红米3s-为例/" rel="prev" title="Android 映射到探界者中控[以红米3s 为例]">
+                Android 映射到探界者中控[以红米3s 为例] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Jeffer Lau" />
+          <p class="site-author-name" itemprop="name">Jeffer Lau</p>
+           
+              <p class="site-description motion-element" itemprop="description">成长源于经历的点点滴滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/judasn/IntelliJ-IDEA-Tutorial" title="IntelliJ IDEA 学习" target="_blank">IntelliJ IDEA 学习</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/kimmking" title="kimmking" target="_blank">kimmking</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zhitbar.com/" title="马某人学习数据库" target="_blank">马某人学习数据库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://ohmyz.sh" title="Oh My ZSH" target="_blank">Oh My ZSH</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://brew.sh" title="Homebrew" target="_blank">Homebrew</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.jenv.be" title="jEnv" target="_blank">jEnv</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://sdkman.io" title="SDKMAN" target="_blank">SDKMAN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/judasn/Linux-Tutorial" title="程序员眼中的 Linux" target="_blank">程序员眼中的 Linux</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GoLand-创建第一个项目"><span class="nav-number">3.</span> <span class="nav-text">GoLand 创建第一个项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建项目"><span class="nav-number">3.1.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-main-文件"><span class="nav-number">3.2.</span> <span class="nav-text">添加 main 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建其他-package-及引用"><span class="nav-number">3.3.</span> <span class="nav-text">创建其他 package 及引用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jeffer Lau</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jefferlau.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://jefferlau.me/2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/';
+          this.page.identifier = '2020/03/29/Golang-学习笔记-01-安装及搭建开发环境-macOS-GoLand/';
+          this.page.title = 'Golang 学习笔记 01 安装及搭建开发环境(macOS GoLand)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jefferlau.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("SbzEtfMyiJG5kAVWY3PpLcTi-MdYXbMMI", "w8389TITmz3Iz71OcVQT8jjS");AV.useAVCloudUS();</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
